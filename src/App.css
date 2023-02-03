@@ -278,3 +278,10 @@ textarea {
 .resume-container h4 {
   margin-bottom: 2em;
 }
+.logo-3 {
+  width: 42px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin: 3em;
+}
