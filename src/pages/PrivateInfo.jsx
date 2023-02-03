@@ -1,6 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function PrivateInfo() {
+  const [validateNameSuccess, setValidateNameSuccess] = useState("");
+  const [validateMailSuccess, setValidateMailSuccess] = useState("");
+  const [validatePhoneSuccess, setValidatePhoneSuccess] = useState("");
+
+  const validateName = (event) => {
+    let value = event.target.value;
+    let regex = /^[\u10A0-\u10FF]+$/;
+    if (value.length >= 2 && regex.test(value)) {
+      setValidateNameSuccess(true);
+      event.target.style.border = "1px solid green";
+    } else {
+      setValidateNameSuccess(false);
+      event.target.style.border = "1px solid red";
+    }
+  };
+
+  const validateMail = (event) => {
+    let value = event.target.value;
+    let check = "@redberry.ge";
+    if (check === value.slice(-12)) {
+      setValidateMailSuccess(true);
+      event.target.style.border = "1px solid green";
+    } else {
+      setValidateMailSuccess(false);
+      event.target.style.border = "1px solid red";
+    }
+  };
+
+  const validateNumber = (event) => {
+    let value = event.target.value;
+    let regex = /^\+[0-9]{12}$/;
+    if (regex.test(value)) {
+      validatePhoneSuccess(true);
+      event.target.style.border = "1px solid green";
+    } else {
+      event.target.style.border = "1px solid red";
+      validatePhoneSuccess(false);
+    }
+  };
   return (
     <div className="private-info">
       <div className="private-info-form">
@@ -20,6 +59,7 @@ export default function PrivateInfo() {
                 placeholder="ანზორ"
                 className="first-name"
                 name="first-name"
+                onChange={validateName}
               />
               <label for="first-name" className="bottom-label">
                 მინიმუმ 2 ასო, ქართული ასოები
@@ -35,6 +75,7 @@ export default function PrivateInfo() {
                 placeholder="მუმლაძე"
                 className="last-name"
                 name="last-name"
+                onChange={validateName}
               />
               <label for="last-name" className="bottom-label">
                 მინიმუმ 2 ასო, ქართული ასოები
@@ -68,6 +109,7 @@ export default function PrivateInfo() {
               type="email"
               name="email"
               placeholder="anzorr666@redberry.ge"
+              onChange={validateMail}
             ></input>
             <label for="email" className="bottom-label">
               უნდა მთავრდებოდეს @redberry.ge-ით
@@ -78,9 +120,10 @@ export default function PrivateInfo() {
               მობილურის ნომერი
             </label>
             <input
-              type="number"
+              type="text"
               name="phone"
               placeholder="+995 551 12 34 56"
+              onChange={validateNumber}
             ></input>
             <label for="email" className="bottom-label">
               უნდა აკმაყოფილებდეს ქართული მობილური ნომრის ფორმატს
