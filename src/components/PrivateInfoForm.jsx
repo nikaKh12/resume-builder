@@ -11,6 +11,7 @@ export default function PrivateInfoForm() {
     validateMail,
     validateNumber,
     validateLastName,
+    imageChange,
   } = useContext(Context);
   return (
     <div className="private-info-form">
@@ -83,7 +84,8 @@ export default function PrivateInfoForm() {
             type="file"
             id="upload"
             name="upload"
-            hidden
+            accept="image/*"
+            onChange={imageChange}
             style={{ display: "none" }}
           />
           <label className="upload-label" for="upload">

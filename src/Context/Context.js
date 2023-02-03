@@ -7,6 +7,7 @@ function ContextProvider({ children }) {
   const [validateLastNameSuccess, setValidateLastNameSuccess] = useState("");
   const [validateMailSuccess, setValidateMailSuccess] = useState("");
   const [validatePhoneSuccess, setValidatePhoneSuccess] = useState("");
+  const [selectedImage, setSelectedImage] = useState();
 
   const validateName = (event) => {
     let value = event.target.value;
@@ -56,6 +57,12 @@ function ContextProvider({ children }) {
     }
   };
 
+  const imageChange = (e) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setSelectedImage(e.target.files[0]);
+    }
+  };
+
   return (
     <Context.Provider
       value={{
@@ -71,6 +78,9 @@ function ContextProvider({ children }) {
         validateLastName,
         validateLastNameSuccess,
         setValidateLastNameSuccess,
+        selectedImage,
+        setSelectedImage,
+        imageChange,
       }}
     >
       {children}
