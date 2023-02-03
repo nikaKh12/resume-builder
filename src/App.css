@@ -210,8 +210,61 @@ textarea {
 .resume-container {
   max-width: 45%;
   width: 100%;
+  margin-top: 3em;
+  display: flex;
+  flex-direction: column;
+  padding: 0 3em;
+  position: relative;
+}
+
+.resume-container p {
+  font-size: 18px;
+}
+.resume-container i {
+  font-size: 15px;
+  color: gray;
+}
+.resume-container h4 {
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .name-container {
   display: flex;
+}
+#first-name,
+#last-name,
+.resume-container h4 {
+  color: #f93b1d;
+}
+
+#first-name,
+#last-name {
+  font-size: 34px;
+}
+.contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 1.5em 0;
+}
+.about-container {
+  max-width: 43vh;
+}
+.about-container p {
+  font-size: 16px;
+}
+
+#upload-preview {
+  border-radius: 50%;
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  right: 0;
+  margin-right: 1em;
+  object-fit: cover;
+  top: 0;
+}
+.resume-container h4 {
+  margin-bottom: 2em;
 }
