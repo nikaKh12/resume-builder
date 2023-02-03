@@ -11,3 +11,12 @@ img {
 a {
   text-decoration: none;
 }
+
+input,
+label {
+  display: block;
+}
+
+input[type="file"] {
+  color: rgba(0, 0, 0, 0);
+}
