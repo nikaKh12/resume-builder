@@ -33,11 +33,11 @@ export default function PrivateInfo() {
     let value = event.target.value;
     let regex = /^\+[0-9]{12}$/;
     if (regex.test(value)) {
-      validatePhoneSuccess(true);
+      setValidatePhoneSuccess(true);
       event.target.style.border = "1px solid green";
     } else {
+      setValidatePhoneSuccess(false);
       event.target.style.border = "1px solid red";
-      validatePhoneSuccess(false);
     }
   };
   return (
