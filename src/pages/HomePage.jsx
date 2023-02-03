@@ -1,6 +1,7 @@
 import React from "react";
 import Logo from "../images/logo.png";
 import Logo2 from "../images/logo-2.png";
+import { Link } from "react-router-dom";
 
 export default function HomePage() {
   return (
@@ -11,9 +12,9 @@ export default function HomePage() {
         <hr />
       </header>
       <main className="home-main">
-        <a href="#" className="add-resume">
-          რეზიუმეს დამატება
-        </a>
+        <Link to="/private-info">
+          <button className="add-resume">რეზიუმეს დამატება</button>
+        </Link>
       </main>
     </div>
   );
