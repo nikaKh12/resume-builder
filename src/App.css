@@ -58,7 +58,7 @@ header {
 .private-info-form-header {
   display: flex;
   justify-content: space-between;
-  margin: 0 0.5em;
+  margin: 0.6em 0.5em;
 }
 
 .form-names-container {
