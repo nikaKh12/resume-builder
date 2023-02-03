@@ -6,28 +6,32 @@ export default function PrivateInfo() {
       <div className="private-info-form">
         <div className="private-info-form-header">
           <h2>პირადი ინფო</h2>
-          <h4>1/3</h4>
-          <hr />
+          <h2>1/3</h2>
         </div>
+        <hr />
         <form>
           <div className="form-names-container">
-            <label for="first-name">სახელი</label>
-            <input
-              type="text"
-              placeholder="ანზორ"
-              className="first-name"
-              name="first-name"
-            />
-            <label for="first-name">მინიმუმ 2 ასო, ქართული ასოები</label>
+            <div className="first-name">
+              <label for="first-name">სახელი</label>
+              <input
+                type="text"
+                placeholder="ანზორ"
+                className="first-name"
+                name="first-name"
+              />
+              <label for="first-name">მინიმუმ 2 ასო, ქართული ასოები</label>
+            </div>
 
-            <label for="last-name">გვარი</label>
-            <input
-              type="text"
-              placeholder="მუმლაძე"
-              className="last-name"
-              name="last-name"
-            />
-            <label for="last-name">მინიმუმ 2 ასო, ქართული ასოები</label>
+            <div className="last-name">
+              <label for="last-name">გვარი</label>
+              <input
+                type="text"
+                placeholder="მუმლაძე"
+                className="last-name"
+                name="last-name"
+              />
+              <label for="last-name">მინიმუმ 2 ასო, ქართული ასოები</label>
+            </div>
           </div>
           <div className="private-picture">
             <h3>პირადი ფოტოს ატვირთვა</h3>
@@ -39,7 +43,7 @@ export default function PrivateInfo() {
               style={{ display: "none" }}
             />
             <label className="upload-label" for="upload">
-              <button>ატვირთვა</button>
+              ატვირთვა
             </label>
           </div>
           <div className="about-me">

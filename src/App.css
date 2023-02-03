@@ -43,3 +43,45 @@ header {
   top: 44%;
   width: 300px;
 }
+
+/* Private Info */
+.private-info {
+  width: 100%;
+}
+
+.private-info-form {
+  max-width: 50%;
+  background-color: #f9f9f9;
+  padding: 1em 5em;
+}
+
+.private-info-form-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0.5em;
+}
+
+.form-names-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2em;
+}
+.form-names-container input {
+  width: 100%;
+}
+.private-picture {
+  display: flex;
+  margin-top: 2em;
+  gap: 1em;
+}
+.about-me {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2em;
+}
+.email {
+  margin-top: 2em;
+}
+.phone {
+  margin-top: 2em;
+}
