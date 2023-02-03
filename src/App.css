@@ -65,7 +65,6 @@ header {
   justify-content: space-between;
   margin: 0.6em 0.5em;
 }
-
 .form-names-container {
   display: flex;
   justify-content: space-between;
@@ -74,8 +73,9 @@ header {
 .form-names-container input {
   width: 100%;
   margin: 7px 2px;
-  padding: 10px 100px;
+  padding: 10px 5px;
 }
+
 .private-picture {
   display: flex;
   margin-top: 2em;
