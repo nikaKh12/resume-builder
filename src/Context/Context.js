@@ -4,6 +4,7 @@ const Context = React.createContext();
 
 function ContextProvider({ children }) {
   const [validateNameSuccess, setValidateNameSuccess] = useState("");
+  const [validateLastNameSuccess, setValidateLastNameSuccess] = useState("");
   const [validateMailSuccess, setValidateMailSuccess] = useState("");
   const [validatePhoneSuccess, setValidatePhoneSuccess] = useState("");
 
@@ -15,6 +16,18 @@ function ContextProvider({ children }) {
       event.target.style.border = "1px solid green";
     } else {
       setValidateNameSuccess(false);
+      event.target.style.border = "1px solid red";
+    }
+  };
+
+  const validateLastName = (event) => {
+    let value = event.target.value;
+    let regex = /^[\u10A0-\u10FF]+$/;
+    if (value.length >= 2 && regex.test(value)) {
+      setValidateLastNameSuccess(true);
+      event.target.style.border = "1px solid green";
+    } else {
+      setValidateLastNameSuccess(false);
       event.target.style.border = "1px solid red";
     }
   };
@@ -55,6 +68,9 @@ function ContextProvider({ children }) {
         validateName,
         validateMail,
         validateNumber,
+        validateLastName,
+        validateLastNameSuccess,
+        setValidateLastNameSuccess,
       }}
     >
       {children}
