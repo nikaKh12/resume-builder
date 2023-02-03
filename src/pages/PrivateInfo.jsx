@@ -2,7 +2,14 @@ import React, { useState, useContext } from "react";
 import { Context } from "../Context/Context";
 
 export default function PrivateInfo() {
-  const { validateName, validateMail, validateNumber } = useContext(Context);
+  const {
+    validateNameSuccess,
+    validateLastNameSuccess,
+    validateName,
+    validateMail,
+    validateNumber,
+    validateLastName,
+  } = useContext(Context);
   return (
     <div className="private-info">
       <div className="private-info-form">
@@ -24,6 +31,12 @@ export default function PrivateInfo() {
                 name="first-name"
                 onChange={validateName}
               />
+              {validateNameSuccess && (
+                <i
+                  className="fa-sharp fa-solid fa-circle-check"
+                  id="correct-name"
+                ></i>
+              )}
               <label for="first-name" className="bottom-label">
                 მინიმუმ 2 ასო, ქართული ასოები
               </label>
@@ -38,8 +51,14 @@ export default function PrivateInfo() {
                 placeholder="მუმლაძე"
                 className="last-name"
                 name="last-name"
-                onChange={validateName}
+                onChange={validateLastName}
               />
+              {validateLastNameSuccess && (
+                <i
+                  className="fa-sharp fa-solid fa-circle-check"
+                  id="correct-last-name"
+                ></i>
+              )}
               <label for="last-name" className="bottom-label">
                 მინიმუმ 2 ასო, ქართული ასოები
               </label>
