@@ -37,6 +37,12 @@ export default function PrivateInfo() {
                   id="correct-name"
                 ></i>
               )}
+              {validateNameSuccess === false && (
+                <i
+                  class="fa-solid fa-triangle-exclamation"
+                  id="incorrect-name"
+                ></i>
+              )}
               <label for="first-name" className="bottom-label">
                 მინიმუმ 2 ასო, ქართული ასოები
               </label>
@@ -57,6 +63,12 @@ export default function PrivateInfo() {
                 <i
                   className="fa-sharp fa-solid fa-circle-check"
                   id="correct-last-name"
+                ></i>
+              )}
+              {validateLastNameSuccess === false && (
+                <i
+                  class="fa-solid fa-triangle-exclamation"
+                  id="incorrect-last-name"
                 ></i>
               )}
               <label for="last-name" className="bottom-label">
