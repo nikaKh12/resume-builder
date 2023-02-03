@@ -9,6 +9,7 @@ export default function PrivateInfoForm() {
     validatePhoneSuccess,
     validateName,
     validateMail,
+    validateAbout,
     validateNumber,
     validateLastName,
     imageChange,
@@ -96,7 +97,11 @@ export default function PrivateInfoForm() {
           <label for="general-info" className="top-label">
             ჩემ შესახებ (არასავალდებულო)
           </label>
-          <textarea name="general-info" placeholder="ზოგადი ინფო შენ შესახებ" />
+          <textarea
+            name="general-info"
+            placeholder="ზოგადი ინფო შენ შესახებ"
+            onChange={validateAbout}
+          />
         </div>
         <div className="email">
           <label for="email" className="top-label">

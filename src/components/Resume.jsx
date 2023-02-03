@@ -11,26 +11,31 @@ export default function Resume() {
     validateMail,
     validateNumber,
     validateLastName,
+    validateAbout,
     selectedImage,
+    formData,
   } = useContext(Context);
   return (
     <div className="resume-container">
       <div className="name-container">
-        <h1 id="first-name">ანზორ</h1>&nbsp;&nbsp;
-        <h1 id="last-name">მელაძე</h1>
+        <h1 id="first-name">{formData.firstName}</h1>&nbsp;&nbsp;
+        <h1 id="last-name">{formData.lastName}</h1>
       </div>
-      <p>
-        <i class="fa-solid fa-at"></i>nika@redberry.ge
-      </p>
-      <p>
-        <i class="fa-solid fa-phone"></i>+995514163443
-      </p>
-      <h4>ჩემ შესახებ</h4>
+      <div className="contact">
+        {formData.mail && (
+          <p>
+            <i class="fa-solid fa-at"></i>&nbsp;{formData.mail}
+          </p>
+        )}
+        {formData.phone && (
+          <p>
+            <i class="fa-solid fa-phone"></i>&nbsp;{formData.phone}
+          </p>
+        )}
+      </div>
+      {formData.about && <h4>ჩემ შესახებ</h4>}
       <div className="about-container">
-        <p>
-          ძალიან მიყვარს დიზაინის კეთება ისე რო ყოველ დილით გამხნევებული ვაკეთებ
-          ვარჯიშებს.
-        </p>
+        <p>{formData.about}</p>
       </div>
       <div className="image-preview">
         {selectedImage && (
