@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { Link, redirect } from "react-router-dom";
 import { Context } from "../Context/Context";
 
 export default function PrivateInfoForm() {
@@ -16,6 +17,9 @@ export default function PrivateInfoForm() {
   } = useContext(Context);
   return (
     <div className="private-info-form">
+      <Link to="/">
+        <i class="fa-sharp fa-solid fa-chevron-left return"></i>
+      </Link>
       <div className="private-info-form-header">
         <h2>პირადი ინფო</h2>
         <h2>1/3</h2>
