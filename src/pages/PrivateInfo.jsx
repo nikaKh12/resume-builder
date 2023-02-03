@@ -2,17 +2,7 @@ import React, { useState, useContext } from "react";
 import { Context } from "../Context/Context";
 
 export default function PrivateInfo() {
-  const {
-    validateNameSuccess,
-    setValidateNameSuccess,
-    validateMailSuccess,
-    setValidateMailSuccess,
-    validatePhoneSuccess,
-    setValidatePhoneSuccess,
-    validateName,
-    validateMail,
-    validateNumber,
-  } = useContext(Context);
+  const { validateName, validateMail, validateNumber } = useContext(Context);
   return (
     <div className="private-info">
       <div className="private-info-form">
