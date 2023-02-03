@@ -135,3 +135,24 @@ header {
   cursor: pointer;
   border-radius: 6px;
 }
+
+#correct-name {
+  color: green;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 5px;
+}
+#correct-last-name {
+  color: green;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 5px;
+}
+.first-name {
+  position: relative;
+}
+.last-name {
+  position: relative;
+}
