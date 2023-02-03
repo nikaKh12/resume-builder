@@ -47,10 +47,10 @@ header {
 /* Private Info */
 .private-info {
   width: 100%;
+  display: flex;
 }
-
 .private-info-form {
-  max-width: 50%;
+  width: 55%;
   background-color: #f9f9f9;
   padding: 1em 5em;
   height: 100vh;
@@ -198,15 +198,20 @@ textarea {
   transform: translateY(-50%);
   right: 5px;
 }
-.first-name {
-  position: relative;
-}
-.last-name {
-  position: relative;
-}
-.email {
-  position: relative;
-}
+
+.first-name,
+.last-name,
+.email,
 .phone {
   position: relative;
+}
+
+/* Resume */
+.resume-container {
+  max-width: 45%;
+  width: 100%;
+}
+
+.name-container {
+  display: flex;
 }
