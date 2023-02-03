@@ -205,6 +205,16 @@ textarea {
 .phone {
   position: relative;
 }
+.return {
+  font-size: 1.3rem;
+  position: absolute;
+  left: 0;
+  margin-left: 0.5em;
+  color: black;
+  background-color: white;
+  padding: 0.5em 0.7em;
+  border-radius: 100%;
+}
 
 /* Resume */
 .resume-container {
