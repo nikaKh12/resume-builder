@@ -12,25 +12,33 @@ export default function PrivateInfo() {
         <form>
           <div className="form-names-container">
             <div className="first-name">
-              <label for="first-name">სახელი</label>
+              <label for="first-name" className="top-label">
+                სახელი
+              </label>
               <input
                 type="text"
                 placeholder="ანზორ"
                 className="first-name"
                 name="first-name"
               />
-              <label for="first-name">მინიმუმ 2 ასო, ქართული ასოები</label>
+              <label for="first-name" className="bottom-label">
+                მინიმუმ 2 ასო, ქართული ასოები
+              </label>
             </div>
 
             <div className="last-name">
-              <label for="last-name">გვარი</label>
+              <label for="last-name" className="top-label">
+                გვარი
+              </label>
               <input
                 type="text"
                 placeholder="მუმლაძე"
                 className="last-name"
                 name="last-name"
               />
-              <label for="last-name">მინიმუმ 2 ასო, ქართული ასოები</label>
+              <label for="last-name" className="bottom-label">
+                მინიმუმ 2 ასო, ქართული ასოები
+              </label>
             </div>
           </div>
           <div className="private-picture">
@@ -47,33 +55,40 @@ export default function PrivateInfo() {
             </label>
           </div>
           <div className="about-me">
-            <label for="general-info">ჩემ შესახებ (არასავალდებულო)</label>
-            <textarea
-              name="general-info"
-              placeholder="ზოგადი ინფო შენ შესახებ"
-            />
+            <label for="general-info" className="top-label">
+              ჩემ შესახებ (არასავალდებულო)
+            </label>
+            <input name="general-info" placeholder="ზოგადი ინფო შენ შესახებ" />
           </div>
           <div className="email">
-            <label for="email">ელ.ფოსტა</label>
+            <label for="email" className="top-label">
+              ელ.ფოსტა
+            </label>
             <input
               type="email"
               name="email"
               placeholder="anzorr666@redberry.ge"
             ></input>
-            <label for="email">უნდა მთავრდებოდეს @redberry.ge-ით</label>
+            <label for="email" className="bottom-label">
+              უნდა მთავრდებოდეს @redberry.ge-ით
+            </label>
           </div>
           <div className="phone">
-            <label for="phone">მობილურის ნომერი</label>
+            <label for="phone" className="top-label">
+              მობილურის ნომერი
+            </label>
             <input
               type="number"
               name="phone"
               placeholder="+995 551 12 34 56"
             ></input>
-            <label for="email">
+            <label for="email" className="bottom-label">
               უნდა აკმაყოფილებდეს ქართული მობილური ნომრის ფორმატს
             </label>
           </div>
-          <button>შემდეგი</button>
+          <div className="btn-container">
+            <button>შემდეგი</button>
+          </div>
         </form>
       </div>
       <div className="resume"></div>
