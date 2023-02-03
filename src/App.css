@@ -53,6 +53,11 @@ header {
   max-width: 50%;
   background-color: #f9f9f9;
   padding: 1em 5em;
+  height: 100vh;
+}
+.private-info-form input {
+  border: 1px solid #b8b8b8;
+  border-radius: 3px;
 }
 
 .private-info-form-header {
@@ -68,6 +73,8 @@ header {
 }
 .form-names-container input {
   width: 100%;
+  margin: 7px 2px;
+  padding: 10px;
 }
 .private-picture {
   display: flex;
@@ -79,9 +86,43 @@ header {
   flex-direction: column;
   margin-top: 2em;
 }
+.about-me input {
+  padding: 10px 0 90px 10px;
+}
 .email {
   margin-top: 2em;
 }
+.email input {
+  margin: 7px 2px;
+  padding: 10px;
+  width: 100%;
+}
 .phone {
   margin-top: 2em;
+}
+.phone input {
+  margin: 7px 2px;
+  padding: 10px;
+  width: 100%;
+}
+.btn-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 7em;
+}
+.btn-container button {
+  background-color: #6b40e3;
+  border: none;
+  color: #ffffff;
+  padding: 18px 40px;
+  border-radius: 4px;
+  font-size: 15px;
+  cursor: pointer;
+}
+.top-label {
+  font-weight: 700;
+}
+.bottom-label {
+  color: #b8b8b8;
+  font-size: 15px;
 }
