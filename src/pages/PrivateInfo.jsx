@@ -5,6 +5,8 @@ export default function PrivateInfo() {
   const {
     validateNameSuccess,
     validateLastNameSuccess,
+    validateMailSuccess,
+    validatePhoneSuccess,
     validateName,
     validateMail,
     validateNumber,
@@ -93,7 +95,10 @@ export default function PrivateInfo() {
             <label for="general-info" className="top-label">
               ჩემ შესახებ (არასავალდებულო)
             </label>
-            <input name="general-info" placeholder="ზოგადი ინფო შენ შესახებ" />
+            <textarea
+              name="general-info"
+              placeholder="ზოგადი ინფო შენ შესახებ"
+            />
           </div>
           <div className="email">
             <label for="email" className="top-label">
@@ -105,6 +110,18 @@ export default function PrivateInfo() {
               placeholder="anzorr666@redberry.ge"
               onChange={validateMail}
             ></input>
+            {validateMailSuccess && (
+              <i
+                className="fa-sharp fa-solid fa-circle-check"
+                id="correct-mail"
+              ></i>
+            )}
+            {validateMailSuccess === false && (
+              <i
+                class="fa-solid fa-triangle-exclamation"
+                id="incorrect-mail"
+              ></i>
+            )}
             <label for="email" className="bottom-label">
               უნდა მთავრდებოდეს @redberry.ge-ით
             </label>
@@ -113,6 +130,18 @@ export default function PrivateInfo() {
             <label for="phone" className="top-label">
               მობილურის ნომერი
             </label>
+            {validatePhoneSuccess && (
+              <i
+                className="fa-sharp fa-solid fa-circle-check"
+                id="correct-phone"
+              ></i>
+            )}
+            {validatePhoneSuccess === false && (
+              <i
+                class="fa-solid fa-triangle-exclamation"
+                id="incorrect-phone"
+              ></i>
+            )}
             <input
               type="text"
               name="phone"
