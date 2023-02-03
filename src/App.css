@@ -143,6 +143,20 @@ header {
   transform: translateY(-50%);
   right: 5px;
 }
+#incorrect-name {
+  color: red;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: -12%;
+}
+#incorrect-last-name {
+  color: red;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: -12%;
+}
 #correct-last-name {
   color: green;
   position: absolute;
