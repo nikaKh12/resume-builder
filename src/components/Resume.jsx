@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "../Context/Context";
+import Logo3 from "../images/logo-3.png";
 
 export default function Resume() {
   const {
@@ -17,6 +18,7 @@ export default function Resume() {
   } = useContext(Context);
   return (
     <div className="resume-container">
+      <img src={Logo3} className="logo-3" />
       <div className="name-container">
         <h1 id="first-name">{formData.firstName}</h1>&nbsp;&nbsp;
         <h1 id="last-name">{formData.lastName}</h1>
