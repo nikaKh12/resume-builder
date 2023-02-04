@@ -26,7 +26,7 @@ function ContextProvider({ children }) {
     });
     if (value.length >= 2 && regex.test(value)) {
       setValidateNameSuccess(true);
-      event.target.style.border = "1px solid green";
+      event.target.style.border = "1px solid #98e37e";
     } else {
       setValidateNameSuccess(false);
       event.target.style.border = "1px solid red";
@@ -42,7 +42,7 @@ function ContextProvider({ children }) {
     });
     if (value.length >= 2 && regex.test(value)) {
       setValidateLastNameSuccess(true);
-      event.target.style.border = "1px solid green";
+      event.target.style.border = "1px solid #98e37e";
     } else {
       setValidateLastNameSuccess(false);
       event.target.style.border = "1px solid red";
@@ -55,6 +55,11 @@ function ContextProvider({ children }) {
       ...formData,
       about: value,
     });
+    if (value.length > 0) {
+      event.target.style.border = "1px solid #98e37e";
+    } else {
+      event.target.style.border = "1px solid #bcbcbc";
+    }
   };
 
   const validateMail = (event) => {
@@ -66,7 +71,7 @@ function ContextProvider({ children }) {
     });
     if (check === value.slice(-12)) {
       setValidateMailSuccess(true);
-      event.target.style.border = "1px solid green";
+      event.target.style.border = "1px solid #98e37e";
     } else {
       setValidateMailSuccess(false);
       event.target.style.border = "1px solid red";
@@ -82,7 +87,7 @@ function ContextProvider({ children }) {
     });
     if (regex.test(value)) {
       setValidatePhoneSuccess(true);
-      event.target.style.border = "1px solid green";
+      event.target.style.border = "1px solid #98e37e";
     } else {
       setValidatePhoneSuccess(false);
       event.target.style.border = "1px solid red";

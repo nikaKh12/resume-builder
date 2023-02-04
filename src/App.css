@@ -57,7 +57,7 @@ header {
   height: 100vh;
 }
 .private-info-form input {
-  border: 1px solid #b8b8b8;
+  border: 1px solid #bcbcbc;
   border-radius: 3px;
 }
 
@@ -123,6 +123,7 @@ textarea {
   padding: 10px 0 90px 10px;
   margin-top: 0.5em;
   resize: none;
+  border: 1px solid #bcbcbc !important;
 }
 .phone {
   margin-top: 2em;
