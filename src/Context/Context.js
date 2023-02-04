@@ -120,6 +120,15 @@ function ContextProvider({ children }) {
     }
   };
 
+  const clearLocalStorage = () => {
+    localStorage.removeItem("firstName");
+    localStorage.removeItem("lastName");
+    localStorage.removeItem("about");
+    localStorage.removeItem("phone");
+    localStorage.removeItem("mail");
+    localStorage.removeItem("image");
+  };
+
   return (
     <Context.Provider
       value={{
@@ -146,6 +155,7 @@ function ContextProvider({ children }) {
         pictureCheck,
         mailCheck,
         phoneCheck,
+        clearLocalStorage,
       }}
     >
       {children}

@@ -20,6 +20,7 @@ export default function PrivateInfoForm() {
     mailCheck,
     phoneCheck,
     setCheck,
+    clearLocalStorage,
   } = useContext(Context);
   const nameRef = useRef(null);
   const lastNameRef = useRef(null);
@@ -48,10 +49,14 @@ export default function PrivateInfoForm() {
       incorrectPhoneRef.current.style.visibility = "hidden";
     }
   }, [pictureCheck, nameCheck, lastNameCheck, mailCheck, phoneCheck]);
+
   return (
     <div className="private-info-form">
       <Link to="/">
-        <i class="fa-sharp fa-solid fa-chevron-left return"></i>
+        <i
+          class="fa-sharp fa-solid fa-chevron-left return"
+          onClick={clearLocalStorage}
+        ></i>
       </Link>
       <div className="private-info-form-header">
         <h2 id="private-info-title">პირადი ინფო</h2>
