@@ -87,6 +87,14 @@ header {
   margin: 7px 2px;
   padding: 10px 5px;
 }
+input::placeholder,
+textarea::placeholder {
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 21px;
+  padding-left: 0.3em;
+}
 
 .private-picture {
   display: flex;
