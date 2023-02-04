@@ -21,8 +21,8 @@ export default function PrivateInfoForm() {
         <i class="fa-sharp fa-solid fa-chevron-left return"></i>
       </Link>
       <div className="private-info-form-header">
-        <h2>პირადი ინფო</h2>
-        <h2>1/3</h2>
+        <h2 id="private-info-title">პირადი ინფო</h2>
+        <h2 id="numeration">1/3</h2>
       </div>
       <hr />
       <form>
