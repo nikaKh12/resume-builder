@@ -5,6 +5,7 @@ const Context = React.createContext();
 function ContextProvider({ children }) {
   const [validateNameSuccess, setValidateNameSuccess] = useState("");
   const [validateLastNameSuccess, setValidateLastNameSuccess] = useState("");
+  const [validatePictureSuccess, setValidatePictureSuccess] = useState("");
   const [validateMailSuccess, setValidateMailSuccess] = useState("");
   const [validatePhoneSuccess, setValidatePhoneSuccess] = useState("");
   const [selectedImage, setSelectedImage] = useState();
@@ -160,6 +161,8 @@ function ContextProvider({ children }) {
         mailCheck,
         phoneCheck,
         resetData,
+        validatePictureSuccess,
+        setValidatePictureSuccess,
       }}
     >
       {children}

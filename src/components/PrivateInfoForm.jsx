@@ -5,7 +5,13 @@ import { Context } from "../Context/Context";
 export default function PrivateInfoForm() {
   const {
     validateNameSuccess,
+    setValidateNameSuccess,
     validateLastNameSuccess,
+    setValidateLastNameSuccess,
+    validatePictureSuccess,
+    setValidatePictureSuccess,
+    setValidateMailSuccess,
+    setValidatePhoneSuccess,
     validateMailSuccess,
     validatePhoneSuccess,
     validateName,
@@ -25,6 +31,7 @@ export default function PrivateInfoForm() {
   const nameRef = useRef(null);
   const lastNameRef = useRef(null);
   const pictureRef = useRef(null);
+  const aboutRef = useRef(null);
   const mailRef = useRef(null);
   const phoneRef = useRef(null);
   const incorrectNameRef = useRef(null);
@@ -50,6 +57,99 @@ export default function PrivateInfoForm() {
     }
   }, [pictureCheck, nameCheck, lastNameCheck, mailCheck, phoneCheck]);
 
+  // TO BE REFACTORED
+  useEffect(() => {
+    let regex = /^[\u10A0-\u10FF]+$/;
+    let phoneRegex = /^\+[0-9]{12}$/;
+    if (
+      (nameRef.current.value = localStorage.getItem("firstName")) &&
+      regex.test(nameRef.current.value) &&
+      nameRef.current.value.length >= 2
+    ) {
+      nameRef.current.style.border = "1px solid #98e37e";
+      setValidateNameSuccess(true);
+    } else if (
+      !regex.test(nameRef.current.value) &&
+      nameRef.current.value !== ""
+    ) {
+      setValidateNameSuccess(false);
+      nameRef.current.style.border = "1px solid #f02424";
+    }
+
+    if (
+      (lastNameRef.current.value =
+        localStorage.getItem("lastName") &&
+        regex.test(lastNameRef.current.value) &&
+        lastNameRef.current.value.length >= 2)
+    ) {
+      lastNameRef.current.style.border = "1px solid #98e37e";
+      setValidateLastNameSuccess(true);
+      lastNameRef.current.value = localStorage.getItem("lastName");
+    } else if (
+      !regex.test(lastNameRef.current.value) &&
+      lastNameRef.current.value !== ""
+    ) {
+      setValidateLastNameSuccess(false);
+      lastNameRef.current.style.border = "1px solid #f02424";
+      lastNameRef.current.value = localStorage.getItem("lastName");
+    }
+
+    if (aboutRef.current.value !== "") {
+      aboutRef.current.style.border = "1px solid #98e373";
+    }
+
+    if (localStorage.getItem("image")) {
+      setValidatePictureSuccess(true);
+      pictureRef.current.style.color = "black";
+    } else {
+      setValidatePictureSuccess(false);
+    }
+
+    if (
+      (mailRef.current.value =
+        localStorage.getItem("mail") &&
+        "@redberry.ge" === mailRef.current.value.slice(-12))
+    ) {
+      mailRef.current.style.border = "1px solid #98e37e";
+      setValidateMailSuccess(true);
+      mailRef.current.value = localStorage.getItem("mail");
+    } else if (
+      "@redberry.ge" !== mailRef.current.value.slice(-12) &&
+      mailRef.current.value !== ""
+    ) {
+      setValidateMailSuccess(false);
+      mailRef.current.value = localStorage.getItem("mail");
+      mailRef.current.style.border = "1px solid #f02424";
+    }
+
+    if (
+      (phoneRef.current.value =
+        localStorage.getItem("phone") &&
+        phoneRegex.test(phoneRef.current.value))
+    ) {
+      phoneRef.current.style.border = "1px solid #98e37e";
+      setValidatePhoneSuccess(true);
+      phoneRef.current.value = localStorage.getItem("phone");
+    } else if (
+      !phoneRegex.test(phoneRef.current.value) &&
+      phoneRef.current.value !== ""
+    ) {
+      setValidatePhoneSuccess(false);
+      phoneRef.current.style.border = "1px solid #f02424";
+      phoneRef.current.value = localStorage.getItem("phone");
+    }
+  }, [
+    nameRef,
+    validateNameSuccess,
+    lastNameRef,
+    validateLastNameSuccess,
+    aboutRef,
+    validateMailSuccess,
+    validatePhoneSuccess,
+    validatePictureSuccess,
+    setValidatePictureSuccess,
+  ]);
+
   return (
     <div className="private-info-form">
       <Link to="/">
@@ -73,6 +173,7 @@ export default function PrivateInfoForm() {
               type="text"
               placeholder="ანზორ"
               className="first-name"
+              value={localStorage.getItem("firstName")}
               name="first-name"
               ref={nameRef}
               onChange={validateName}
@@ -109,6 +210,7 @@ export default function PrivateInfoForm() {
               type="text"
               placeholder="მუმლაძე"
               className="last-name"
+              value={localStorage.getItem("lastName")}
               name="last-name"
               ref={lastNameRef}
               onChange={validateLastName}
@@ -137,7 +239,12 @@ export default function PrivateInfoForm() {
           </div>
         </div>
         <div className="private-picture">
-          <h3 ref={pictureRef}>პირადი ფოტოს ატვირთვა</h3>
+          <h3
+            ref={pictureRef}
+            style={{ color: validatePictureSuccess ? "#f02424" : "black" }}
+          >
+            პირადი ფოტოს ატვირთვა
+          </h3>
           <input
             type="file"
             id="upload"
@@ -153,6 +260,11 @@ export default function PrivateInfoForm() {
               output.onload = () => {
                 URL.revokeObjectURL(output.src);
               };
+              if (e.target.files[0].type) {
+                setValidatePictureSuccess(true);
+              } else {
+                setValidateLastNameSuccess(false);
+              }
               const image = e.target.files[0];
               const reader = new FileReader();
               reader.readAsDataURL(image);
@@ -174,6 +286,8 @@ export default function PrivateInfoForm() {
           <textarea
             name="general-info"
             placeholder="ზოგადი ინფო შენ შესახებ"
+            value={localStorage.getItem("about")}
+            ref={aboutRef}
             onChange={validateAbout}
           />
         </div>
@@ -185,6 +299,7 @@ export default function PrivateInfoForm() {
             type="email"
             name="email"
             placeholder="anzorr666@redberry.ge"
+            value={localStorage.getItem("mail")}
             ref={mailRef}
             onChange={validateMail}
           ></input>
@@ -234,6 +349,7 @@ export default function PrivateInfoForm() {
             name="phone"
             placeholder="+995 551 12 34 56"
             ref={phoneRef}
+            value={localStorage.getItem("phone")}
             onChange={validateNumber}
           ></input>
           <label for="email" className="bottom-label">
