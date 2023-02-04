@@ -260,6 +260,7 @@ textarea {
 }
 .about-container {
   max-width: 43vh;
+  line-height: 23px;
 }
 .about-container p {
   font-size: 16px;
