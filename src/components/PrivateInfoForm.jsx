@@ -248,7 +248,7 @@ export default function PrivateInfoForm() {
                 mailCheck &&
                 phoneCheck
               ) {
-                console.log("gugu");
+                console.log("validated");
               }
             }}
           >
