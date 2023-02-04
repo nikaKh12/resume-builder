@@ -65,6 +65,17 @@ header {
   justify-content: space-between;
   margin: 0.6em 0.5em;
 }
+
+#private-info-title {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+#numeration {
+  font-weight: 400;
+  line-height: 24px;
+}
 .form-names-container {
   display: flex;
   justify-content: space-between;
@@ -119,80 +130,87 @@ textarea {
 }
 .btn-container button {
   background-color: #6b40e3;
+  font-weight: 500;
   border: none;
   color: #ffffff;
   padding: 13px 40px;
   border-radius: 4px;
-  font-size: 15px;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.08em;
   cursor: pointer;
 }
 .top-label {
   font-weight: 700;
 }
 .bottom-label {
-  color: #b8b8b8;
-  font-size: 13px;
+  color: #2e2e2e;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 21px;
 }
 .upload-label {
   background-color: #0e80bf;
   color: white;
   padding: 6px 20px;
-  font-size: 13px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
   cursor: pointer;
   border-radius: 6px;
 }
 
 #correct-name {
-  color: green;
+  color: #98e37e;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   right: 5px;
 }
 #correct-mail {
-  color: green;
+  color: #98e37e;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   right: 5px;
 }
 #incorrect-name {
-  color: red;
+  color: #f02424;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   right: -12%;
 }
 #incorrect-last-name {
-  color: red;
+  color: #f02424;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   right: -12%;
 }
 #incorrect-mail {
-  color: red;
+  color: #f02424;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   right: -3.5%;
 }
 #correct-phone {
-  color: green;
+  color: #98e37e;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   right: 5px;
 }
 #incorrect-phone {
-  color: red;
+  color: #f02424;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   right: -3.5%;
 }
 #correct-last-name {
-  color: green;
+  color: #98e37e;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
