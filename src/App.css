@@ -313,3 +313,9 @@ textarea {
   left: 0;
   margin: 3em;
 }
+#upload-preview {
+  display: none;
+}
+#upload-preview[src] {
+  display: block;
+}

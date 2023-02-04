@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../Context/Context";
 import Logo3 from "../images/logo-3.png";
 
@@ -15,13 +15,14 @@ export default function Resume() {
     validateAbout,
     selectedImage,
     formData,
+    check,
   } = useContext(Context);
-  localStorage.removeItem("firstName");
-  localStorage.removeItem("lastName");
-  localStorage.removeItem("about");
-  localStorage.removeItem("phone");
-  localStorage.removeItem("mail");
-  localStorage.removeItem("image");
+  // localStorage.removeItem("firstName");
+  // localStorage.removeItem("lastName");
+  // localStorage.removeItem("about");
+  // localStorage.removeItem("phone");
+  // localStorage.removeItem("mail");
+  // localStorage.removeItem("image");
 
   return (
     <div className="resume-container">
@@ -48,9 +49,7 @@ export default function Resume() {
         <p>{localStorage.getItem("about")}</p>
       </div>
       <div className="image-preview">
-        {/* {selectedImage && (
-          <img id="upload-preview" src={URL.createObjectURL(selectedImage)} />
-        )} */}
+        {/* <img id="upload-preview" src={localStorage.getItem("image")} /> */}
 
         <img id="upload-preview" src={localStorage.getItem("image")} />
       </div>

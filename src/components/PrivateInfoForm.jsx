@@ -19,6 +19,7 @@ export default function PrivateInfoForm() {
     pictureCheck,
     mailCheck,
     phoneCheck,
+    setCheck,
   } = useContext(Context);
   const nameRef = useRef(null);
   const lastNameRef = useRef(null);
@@ -47,7 +48,6 @@ export default function PrivateInfoForm() {
       incorrectPhoneRef.current.style.visibility = "hidden";
     }
   }, [pictureCheck, nameCheck, lastNameCheck, mailCheck, phoneCheck]);
-
   return (
     <div className="private-info-form">
       <Link to="/">
@@ -139,6 +139,15 @@ export default function PrivateInfoForm() {
             name="upload"
             accept="image/*"
             onChange={(e) => {
+              let img = new Image();
+              const imgParent = document.querySelector(".image-preview");
+              imgParent.appendChild(img);
+              img.setAttribute("id", "upload-preview");
+              let output = document.getElementById("upload-preview");
+              output.src = URL.createObjectURL(e.target.files[0]);
+              output.onload = () => {
+                URL.revokeObjectURL(output.src);
+              };
               const image = e.target.files[0];
               const reader = new FileReader();
               reader.readAsDataURL(image);
@@ -230,6 +239,7 @@ export default function PrivateInfoForm() {
           <button
             onClick={(event) => {
               event.preventDefault();
+
               if (!nameCheck) {
                 nameRef.current.style.border = "1px solid #f02424";
                 incorrectNameRef.current.style.visibility = "visible";
