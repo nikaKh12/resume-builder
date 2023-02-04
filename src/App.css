@@ -300,7 +300,7 @@ textarea {
   position: absolute;
   right: 0;
   margin-right: 1em;
-  object-fit: cover;
+  object-fit: contain;
   top: 0;
 }
 .resume-container h4 {
