@@ -369,7 +369,7 @@ export default function PrivateInfoForm() {
                 lastNameRef.current.style.border = "1px solid #f02424";
                 incorrectLastNameRef.current.style.visibility = "visible";
               }
-              if (!pictureCheck) {
+              if (!validatePictureSuccess) {
                 pictureRef.current.style.color = "#f02424";
               }
               if (!mailCheck) {
