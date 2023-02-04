@@ -120,13 +120,17 @@ function ContextProvider({ children }) {
     }
   };
 
-  const clearLocalStorage = () => {
+  const resetData = () => {
     localStorage.removeItem("firstName");
     localStorage.removeItem("lastName");
     localStorage.removeItem("about");
     localStorage.removeItem("phone");
     localStorage.removeItem("mail");
     localStorage.removeItem("image");
+    setValidateNameSuccess("");
+    setValidateLastNameSuccess("");
+    setValidateMailSuccess("");
+    setValidatePhoneSuccess("");
   };
 
   return (
@@ -155,7 +159,7 @@ function ContextProvider({ children }) {
         pictureCheck,
         mailCheck,
         phoneCheck,
-        clearLocalStorage,
+        resetData,
       }}
     >
       {children}

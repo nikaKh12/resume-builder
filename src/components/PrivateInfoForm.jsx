@@ -20,7 +20,7 @@ export default function PrivateInfoForm() {
     mailCheck,
     phoneCheck,
     setCheck,
-    clearLocalStorage,
+    resetData,
   } = useContext(Context);
   const nameRef = useRef(null);
   const lastNameRef = useRef(null);
@@ -55,7 +55,7 @@ export default function PrivateInfoForm() {
       <Link to="/">
         <i
           class="fa-sharp fa-solid fa-chevron-left return"
-          onClick={clearLocalStorage}
+          onClick={resetData}
         ></i>
       </Link>
       <div className="private-info-form-header">
