@@ -47,6 +47,7 @@ export default function PrivateInfoForm() {
       incorrectPhoneRef.current.style.visibility = "hidden";
     }
   }, [pictureCheck, nameCheck, lastNameCheck, mailCheck, phoneCheck]);
+
   return (
     <div className="private-info-form">
       <Link to="/">
@@ -137,7 +138,15 @@ export default function PrivateInfoForm() {
             id="upload"
             name="upload"
             accept="image/*"
-            onChange={imageChange}
+            onChange={(e) => {
+              const image = e.target.files[0];
+              const reader = new FileReader();
+              reader.readAsDataURL(image);
+              reader.onload = () => {
+                let result = reader.result;
+                localStorage.setItem("image", result);
+              };
+            }}
             style={{ display: "none" }}
           />
           <label className="upload-label" for="upload">
@@ -221,7 +230,6 @@ export default function PrivateInfoForm() {
           <button
             onClick={(event) => {
               event.preventDefault();
-              console.log(pictureCheck);
               if (!nameCheck) {
                 nameRef.current.style.border = "1px solid #f02424";
                 incorrectNameRef.current.style.visibility = "visible";

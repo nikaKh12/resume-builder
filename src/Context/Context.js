@@ -38,6 +38,7 @@ function ContextProvider({ children }) {
       setNameCheck(false);
       event.target.style.border = "1px solid #f93b1d";
     }
+    localStorage.setItem("firstName", value);
   };
 
   const validateLastName = (event) => {
@@ -56,6 +57,7 @@ function ContextProvider({ children }) {
       setLastNameCheck(false);
       event.target.style.border = "1px solid #f93b1d";
     }
+    localStorage.setItem("lastName", value);
   };
 
   const validateAbout = (event) => {
@@ -69,6 +71,7 @@ function ContextProvider({ children }) {
     } else {
       event.target.style.border = "1px solid #bcbcbc";
     }
+    localStorage.setItem("about", value);
   };
 
   const validateMail = (event) => {
@@ -87,6 +90,7 @@ function ContextProvider({ children }) {
       setMailCheck(false);
       event.target.style.border = "1px solid #f93b1d";
     }
+    localStorage.setItem("mail", value);
   };
 
   const validateNumber = (event) => {
@@ -105,6 +109,7 @@ function ContextProvider({ children }) {
       setPhoneCheck(false);
       event.target.style.border = "1px solid #f93b1d";
     }
+    localStorage.setItem("phone", value);
   };
 
   const imageChange = (e) => {

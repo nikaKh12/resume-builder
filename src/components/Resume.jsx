@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Context } from "../Context/Context";
 import Logo3 from "../images/logo-3.png";
 
@@ -16,33 +16,43 @@ export default function Resume() {
     selectedImage,
     formData,
   } = useContext(Context);
+  localStorage.removeItem("firstName");
+  localStorage.removeItem("lastName");
+  localStorage.removeItem("about");
+  localStorage.removeItem("phone");
+  localStorage.removeItem("mail");
+  localStorage.removeItem("image");
+
   return (
     <div className="resume-container">
       <img src={Logo3} className="logo-3" />
       <div className="name-container">
-        <h1 id="first-name">{formData.firstName}</h1>&nbsp;&nbsp;
-        <h1 id="last-name">{formData.lastName}</h1>
+        <h1 id="first-name">{localStorage.getItem("firstName")}</h1>&nbsp;&nbsp;
+        <h1 id="last-name">{localStorage.getItem("lastName")}</h1>
       </div>
       <div className="contact">
-        {formData.mail && (
+        {localStorage.getItem("mail") && (
           <p>
-            <i class="fa-solid fa-at"></i>&nbsp;{formData.mail}
+            <i class="fa-solid fa-at"></i>&nbsp;{localStorage.getItem("mail")}
           </p>
         )}
-        {formData.phone && (
+        {localStorage.getItem("phone") && (
           <p>
-            <i class="fa-solid fa-phone"></i>&nbsp;{formData.phone}
+            <i class="fa-solid fa-phone"></i>&nbsp;
+            {localStorage.getItem("phone")}
           </p>
         )}
       </div>
-      {formData.about && <h4>ჩემ შესახებ</h4>}
+      {localStorage.getItem("about") && <h4>ჩემ შესახებ</h4>}
       <div className="about-container">
-        <p>{formData.about}</p>
+        <p>{localStorage.getItem("about")}</p>
       </div>
       <div className="image-preview">
-        {selectedImage && (
+        {/* {selectedImage && (
           <img id="upload-preview" src={URL.createObjectURL(selectedImage)} />
-        )}
+        )} */}
+
+        <img id="upload-preview" src={localStorage.getItem("image")} />
       </div>
     </div>
   );
