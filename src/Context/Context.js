@@ -8,6 +8,11 @@ function ContextProvider({ children }) {
   const [validateMailSuccess, setValidateMailSuccess] = useState("");
   const [validatePhoneSuccess, setValidatePhoneSuccess] = useState("");
   const [selectedImage, setSelectedImage] = useState();
+  const [nameCheck, setNameCheck] = useState(false);
+  const [lastNameCheck, setLastNameCheck] = useState(false);
+  const [pictureCheck, setPictureCheck] = useState(false);
+  const [mailCheck, setMailCheck] = useState(false);
+  const [phoneCheck, setPhoneCheck] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -26,10 +31,12 @@ function ContextProvider({ children }) {
     });
     if (value.length >= 2 && regex.test(value)) {
       setValidateNameSuccess(true);
+      setNameCheck(true);
       event.target.style.border = "1px solid #98e37e";
     } else {
       setValidateNameSuccess(false);
-      event.target.style.border = "1px solid red";
+      setNameCheck(false);
+      event.target.style.border = "1px solid #f93b1d";
     }
   };
 
@@ -42,10 +49,12 @@ function ContextProvider({ children }) {
     });
     if (value.length >= 2 && regex.test(value)) {
       setValidateLastNameSuccess(true);
+      setLastNameCheck(true);
       event.target.style.border = "1px solid #98e37e";
     } else {
       setValidateLastNameSuccess(false);
-      event.target.style.border = "1px solid red";
+      setLastNameCheck(false);
+      event.target.style.border = "1px solid #f93b1d";
     }
   };
 
@@ -71,10 +80,12 @@ function ContextProvider({ children }) {
     });
     if (check === value.slice(-12)) {
       setValidateMailSuccess(true);
+      setMailCheck(true);
       event.target.style.border = "1px solid #98e37e";
     } else {
       setValidateMailSuccess(false);
-      event.target.style.border = "1px solid red";
+      setMailCheck(false);
+      event.target.style.border = "1px solid #f93b1d";
     }
   };
 
@@ -87,16 +98,21 @@ function ContextProvider({ children }) {
     });
     if (regex.test(value)) {
       setValidatePhoneSuccess(true);
+      setPhoneCheck(true);
       event.target.style.border = "1px solid #98e37e";
     } else {
       setValidatePhoneSuccess(false);
-      event.target.style.border = "1px solid red";
+      setPhoneCheck(false);
+      event.target.style.border = "1px solid #f93b1d";
     }
   };
 
   const imageChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
+      setPictureCheck(true);
       setSelectedImage(e.target.files[0]);
+    } else {
+      setPictureCheck(false);
     }
   };
 
@@ -121,6 +137,11 @@ function ContextProvider({ children }) {
         imageChange,
         formData,
         setFormData,
+        nameCheck,
+        lastNameCheck,
+        pictureCheck,
+        mailCheck,
+        phoneCheck,
       }}
     >
       {children}

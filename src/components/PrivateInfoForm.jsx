@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import { Link, redirect } from "react-router-dom";
 import { Context } from "../Context/Context";
 
@@ -14,7 +14,39 @@ export default function PrivateInfoForm() {
     validateNumber,
     validateLastName,
     imageChange,
+    nameCheck,
+    lastNameCheck,
+    pictureCheck,
+    mailCheck,
+    phoneCheck,
   } = useContext(Context);
+  const nameRef = useRef(null);
+  const lastNameRef = useRef(null);
+  const pictureRef = useRef(null);
+  const mailRef = useRef(null);
+  const phoneRef = useRef(null);
+  const incorrectNameRef = useRef(null);
+  const incorrectLastNameRef = useRef(null);
+  const incorrectMailRef = useRef(null);
+  const incorrectPhoneRef = useRef(null);
+
+  useEffect(() => {
+    if (pictureCheck) {
+      pictureRef.current.style.color = "black";
+    }
+    if (nameCheck) {
+      incorrectNameRef.current.style.visibility = "hidden";
+    }
+    if (lastNameCheck) {
+      incorrectLastNameRef.current.style.visibility = "hidden";
+    }
+    if (mailCheck) {
+      incorrectMailRef.current.style.visibility = "hidden";
+    }
+    if (phoneCheck) {
+      incorrectPhoneRef.current.style.visibility = "hidden";
+    }
+  }, [pictureCheck, nameCheck, lastNameCheck, mailCheck, phoneCheck]);
   return (
     <div className="private-info-form">
       <Link to="/">
@@ -36,6 +68,7 @@ export default function PrivateInfoForm() {
               placeholder="ანზორ"
               className="first-name"
               name="first-name"
+              ref={nameRef}
               onChange={validateName}
             />
             {validateNameSuccess && (
@@ -50,6 +83,13 @@ export default function PrivateInfoForm() {
                 id="incorrect-name"
               ></i>
             )}
+            <i
+              class="fa-solid fa-triangle-exclamation"
+              id="incorrect-name"
+              ref={incorrectNameRef}
+              style={{ visibility: "hidden" }}
+            ></i>
+
             <label for="first-name" className="bottom-label">
               მინიმუმ 2 ასო, ქართული ასოები
             </label>
@@ -64,6 +104,7 @@ export default function PrivateInfoForm() {
               placeholder="მუმლაძე"
               className="last-name"
               name="last-name"
+              ref={lastNameRef}
               onChange={validateLastName}
             />
             {validateLastNameSuccess && (
@@ -78,13 +119,19 @@ export default function PrivateInfoForm() {
                 id="incorrect-last-name"
               ></i>
             )}
+            <i
+              class="fa-solid fa-triangle-exclamation"
+              id="incorrect-last-name"
+              style={{ visibility: "hidden" }}
+              ref={incorrectLastNameRef}
+            ></i>
             <label for="last-name" className="bottom-label">
               მინიმუმ 2 ასო, ქართული ასოები
             </label>
           </div>
         </div>
         <div className="private-picture">
-          <h3>პირადი ფოტოს ატვირთვა</h3>
+          <h3 ref={pictureRef}>პირადი ფოტოს ატვირთვა</h3>
           <input
             type="file"
             id="upload"
@@ -115,6 +162,7 @@ export default function PrivateInfoForm() {
             type="email"
             name="email"
             placeholder="anzorr666@redberry.ge"
+            ref={mailRef}
             onChange={validateMail}
           ></input>
           {validateMailSuccess && (
@@ -126,6 +174,12 @@ export default function PrivateInfoForm() {
           {validateMailSuccess === false && (
             <i class="fa-solid fa-triangle-exclamation" id="incorrect-mail"></i>
           )}
+          <i
+            class="fa-solid fa-triangle-exclamation"
+            id="incorrect-mail"
+            style={{ visibility: "hidden" }}
+            ref={incorrectMailRef}
+          ></i>
           <label for="email" className="bottom-label">
             უნდა მთავრდებოდეს @redberry.ge-ით
           </label>
@@ -146,10 +200,17 @@ export default function PrivateInfoForm() {
               id="incorrect-phone"
             ></i>
           )}
+          <i
+            class="fa-solid fa-triangle-exclamation"
+            id="incorrect-phone"
+            style={{ visibility: "hidden" }}
+            ref={incorrectPhoneRef}
+          ></i>
           <input
             type="text"
             name="phone"
             placeholder="+995 551 12 34 56"
+            ref={phoneRef}
             onChange={validateNumber}
           ></input>
           <label for="email" className="bottom-label">
@@ -157,7 +218,42 @@ export default function PrivateInfoForm() {
           </label>
         </div>
         <div className="btn-container">
-          <button>შემდეგი</button>
+          <button
+            onClick={(event) => {
+              event.preventDefault();
+              console.log(pictureCheck);
+              if (!nameCheck) {
+                nameRef.current.style.border = "1px solid #f02424";
+                incorrectNameRef.current.style.visibility = "visible";
+              }
+              if (!lastNameCheck) {
+                lastNameRef.current.style.border = "1px solid #f02424";
+                incorrectLastNameRef.current.style.visibility = "visible";
+              }
+              if (!pictureCheck) {
+                pictureRef.current.style.color = "#f02424";
+              }
+              if (!mailCheck) {
+                mailRef.current.style.border = "1px solid #f02424";
+                incorrectMailRef.current.style.visibility = "visible";
+              }
+              if (!phoneCheck) {
+                phoneRef.current.style.border = "1px solid #f02424";
+                incorrectPhoneRef.current.style.visibility = "visible";
+              }
+              if (
+                nameCheck &&
+                lastNameCheck &&
+                pictureCheck &&
+                mailCheck &&
+                phoneCheck
+              ) {
+                console.log("gugu");
+              }
+            }}
+          >
+            შემდეგი
+          </button>
         </div>
       </form>
     </div>
