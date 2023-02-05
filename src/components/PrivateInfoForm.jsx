@@ -60,7 +60,8 @@ export default function PrivateInfoForm() {
   // TO BE REFACTORED
   useEffect(() => {
     let regex = /^[\u10A0-\u10FF]+$/;
-    let phoneRegex = /^\+[0-9]{12}$/;
+    let phoneRegex =
+      /^\+995\d{3}\d{2}\d{2}\d{2}|^\+995 \d{3} \d{2} \d{2} \d{2}$/;
     if (
       (nameRef.current.value = localStorage.getItem("firstName")) &&
       regex.test(nameRef.current.value) &&

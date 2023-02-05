@@ -14,6 +14,7 @@ function ContextProvider({ children }) {
   const [pictureCheck, setPictureCheck] = useState(false);
   const [mailCheck, setMailCheck] = useState(false);
   const [phoneCheck, setPhoneCheck] = useState(false);
+  let [plus, setPlus] = useState("");
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -95,11 +96,17 @@ function ContextProvider({ children }) {
 
   const validateNumber = (event) => {
     let value = event.target.value;
-    let regex = /^\+[0-9]{12}$/;
+    let regex = /^\+995\d{3}\d{2}\d{2}\d{2}|^\+995 \d{3} \d{2} \d{2} \d{2}$/;
     setFormData({
       ...formData,
       phone: value,
     });
+    if (value[0] !== "+") {
+      setPlus("+");
+      value = plus + value;
+    } else {
+      setPlus("");
+    }
     if (regex.test(value)) {
       setValidatePhoneSuccess(true);
       setPhoneCheck(true);
