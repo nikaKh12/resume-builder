@@ -261,11 +261,11 @@ export default function PrivateInfoForm() {
               // output.onload = () => {
               //   URL.revokeObjectURL(output.src);
               // };
-              // if (e.target.files[0].type) {
-              //   setValidatePictureSuccess(true);
-              // } else {
-              //   setValidateLastNameSuccess(false);
-              // }
+              if (e.target.files[0].type) {
+                setValidatePictureSuccess(true);
+              } else {
+                setValidatePictureSuccess(false);
+              }
               const image = e.target.files[0];
               const reader = new FileReader();
               reader.readAsDataURL(image);
@@ -361,7 +361,6 @@ export default function PrivateInfoForm() {
           <button
             onClick={(event) => {
               event.preventDefault();
-
               if (!validateNameSuccess) {
                 nameRef.current.style.border = "1px solid #f02424";
                 incorrectNameRef.current.style.visibility = "visible";
@@ -372,6 +371,9 @@ export default function PrivateInfoForm() {
               }
               if (!validatePictureSuccess) {
                 pictureRef.current.style.color = "#f02424";
+              }
+              if (document.getElementById("upload").files[0]) {
+                setValidatePictureSuccess(true);
               }
               if (!validateMailSuccess) {
                 mailRef.current.style.border = "1px solid #f02424";
