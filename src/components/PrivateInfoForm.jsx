@@ -251,20 +251,20 @@ export default function PrivateInfoForm() {
             name="upload"
             accept="image/*"
             onChange={(e) => {
-              let img = new Image();
-              const imgParent = document.querySelector(".image-preview");
-              imgParent.appendChild(img);
-              img.setAttribute("id", "upload-preview");
+              // let img = new Image();
+              // const imgParent = document.querySelector(".image-preview");
+              // imgParent.appendChild(img);
+              // img.setAttribute("id", "upload-preview");
               let output = document.getElementById("upload-preview");
               output.src = URL.createObjectURL(e.target.files[0]);
-              output.onload = () => {
-                URL.revokeObjectURL(output.src);
-              };
-              if (e.target.files[0].type) {
-                setValidatePictureSuccess(true);
-              } else {
-                setValidateLastNameSuccess(false);
-              }
+              // output.onload = () => {
+              //   URL.revokeObjectURL(output.src);
+              // };
+              // if (e.target.files[0].type) {
+              //   setValidatePictureSuccess(true);
+              // } else {
+              //   setValidateLastNameSuccess(false);
+              // }
               const image = e.target.files[0];
               const reader = new FileReader();
               reader.readAsDataURL(image);
@@ -361,31 +361,31 @@ export default function PrivateInfoForm() {
             onClick={(event) => {
               event.preventDefault();
 
-              if (!nameCheck) {
+              if (!validateNameSuccess) {
                 nameRef.current.style.border = "1px solid #f02424";
                 incorrectNameRef.current.style.visibility = "visible";
               }
-              if (!lastNameCheck) {
+              if (!validateLastNameSuccess) {
                 lastNameRef.current.style.border = "1px solid #f02424";
                 incorrectLastNameRef.current.style.visibility = "visible";
               }
               if (!validatePictureSuccess) {
                 pictureRef.current.style.color = "#f02424";
               }
-              if (!mailCheck) {
+              if (!validateMailSuccess) {
                 mailRef.current.style.border = "1px solid #f02424";
                 incorrectMailRef.current.style.visibility = "visible";
               }
-              if (!phoneCheck) {
+              if (!validatePhoneSuccess) {
                 phoneRef.current.style.border = "1px solid #f02424";
                 incorrectPhoneRef.current.style.visibility = "visible";
               }
               if (
-                nameCheck &&
-                lastNameCheck &&
-                pictureCheck &&
-                mailCheck &&
-                phoneCheck
+                validateNameSuccess &&
+                validateLastNameSuccess &&
+                validatePictureSuccess &&
+                validateMailSuccess &&
+                validatePhoneSuccess
               ) {
                 console.log("validated");
               }
