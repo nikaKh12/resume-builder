@@ -261,15 +261,20 @@ export default function PrivateInfoForm() {
               // output.onload = () => {
               //   URL.revokeObjectURL(output.src);
               // };
-              if (e.target.files[0].type) {
-                setValidatePictureSuccess(true);
-              } else {
-                setValidatePictureSuccess(false);
-              }
+              // if (e.target.files[0].type) {
+              //   setValidatePictureSuccess(true);
+              // } else {
+              //   setValidatePictureSuccess(false);
+              // }
               const image = e.target.files[0];
               const reader = new FileReader();
               reader.readAsDataURL(image);
               reader.onload = () => {
+                if (e.target.files[0].type) {
+                  setValidatePictureSuccess(true);
+                } else {
+                  setValidatePictureSuccess(false);
+                }
                 let result = reader.result;
                 localStorage.setItem("image", result);
               };

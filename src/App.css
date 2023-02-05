@@ -232,6 +232,10 @@ textarea {
 .phone {
   position: relative;
 }
+.first-name,
+.last-name {
+  width: 40%;
+}
 .return {
   font-size: 1.3rem;
   position: absolute;
