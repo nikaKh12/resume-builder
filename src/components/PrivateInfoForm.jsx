@@ -2,7 +2,6 @@ import React, { useContext, useRef, useEffect } from "react";
 import FormHeader from "./FormHeader";
 import { Link } from "react-router-dom";
 import { Context } from "../Context/Context";
-import { regex, phoneRegex } from "../helper/Helper";
 import { FirstName } from "./FirstName";
 import { LastName } from "./LastName";
 import { PrivatePicture } from "./PrivatePicture";
@@ -10,6 +9,13 @@ import { AboutMe } from "./AboutMe";
 import { Email } from "./Email";
 import { Phone } from "./Phone";
 import { PrivateInfoBtn } from "./PrivateInfoBtn";
+import {
+  regex,
+  phoneRegex,
+  toggleValidation,
+  changeColor,
+  setBorder,
+} from "../helper/Helper";
 
 export default function PrivateInfoForm() {
   const {
@@ -55,106 +61,77 @@ export default function PrivateInfoForm() {
     phoneRef,
     incorrectPhoneRef,
   };
-
   useEffect(() => {
     if (validatePictureSuccess) {
-      pictureRef.current.style.color = "black";
+      changeColor(pictureRef, "black");
     }
-    if (validateNameSuccess) {
-      incorrectNameRef.current.style.visibility = "hidden";
-    }
-    if (validateLastNameSuccess) {
-      incorrectLastNameRef.current.style.visibility = "hidden";
-    }
-    if (validateMailSuccess) {
-      incorrectMailRef.current.style.visibility = "hidden";
-    }
-    if (validatePhoneSuccess) {
-      incorrectPhoneRef.current.style.visibility = "hidden";
-    }
+    toggleValidation(incorrectNameRef, validateNameSuccess);
+    toggleValidation(incorrectLastNameRef, validateLastNameSuccess);
+    toggleValidation(incorrectMailRef, validateMailSuccess);
+    toggleValidation(incorrectPhoneRef, validatePhoneSuccess);
   }, [
     validatePictureSuccess,
     validateNameSuccess,
-    validateLastName,
+    validateLastNameSuccess,
     validateMailSuccess,
     validatePhoneSuccess,
   ]);
 
   // TO BE REFACTORED
   useEffect(() => {
-    if (
-      (nameRef.current.value = localStorage.getItem("firstName")) &&
-      regex.test(nameRef.current.value) &&
-      nameRef.current.value.length >= 2
-    ) {
-      nameRef.current.style.border = "1px solid #98e37e";
+    nameRef.current.value = localStorage.getItem("firstName");
+    lastNameRef.current.value = localStorage.getItem("lastName");
+    phoneRef.current.value = localStorage.getItem("phone");
+    const email = (mailRef.current.value = localStorage.getItem("mail"));
+    const isNameValid =
+      regex.test(nameRef.current.value) && nameRef.current.value.length >= 2;
+    const isLastNameValid =
+      regex.test(lastNameRef.current.value) &&
+      lastNameRef.current.value.length >= 2;
+    const isEmailValid = email && "@redberry.ge" === email.slice(-12);
+    const isPhoneValid = phoneRegex.test(phoneRef.current.value);
+
+    if (isNameValid) {
       setValidateNameSuccess(true);
+      setBorder(nameRef, "1px solid #98e373");
     } else if (nameRef.current.value !== "") {
       setValidateNameSuccess(false);
-      nameRef.current.style.border = "1px solid #f02424";
-      nameRef.current.value = localStorage.getItem("firstName");
+      setBorder(nameRef, "1px solid #f02424");
     }
-    if (
-      (lastNameRef.current.value =
-        localStorage.getItem("lastName") &&
-        regex.test(lastNameRef.current.value) &&
-        lastNameRef.current.value.length >= 2)
-    ) {
-      lastNameRef.current.style.border = "1px solid #98e37e";
+
+    if (isLastNameValid) {
       setValidateLastNameSuccess(true);
-      lastNameRef.current.value = localStorage.getItem("lastName");
-    } else if (
-      !regex.test(lastNameRef.current.value) &&
-      lastNameRef.current.value !== ""
-    ) {
+      setBorder(lastNameRef, "1px solid #98e373");
+    } else if (lastNameRef.current.value !== "") {
       setValidateLastNameSuccess(false);
-      lastNameRef.current.style.border = "1px solid #f02424";
-      lastNameRef.current.value = localStorage.getItem("lastName");
+      setBorder(lastNameRef, "1px solid #f02424");
     }
 
     if (aboutRef.current.value !== "") {
-      aboutRef.current.style.border = "1px solid #98e373";
+      setBorder(aboutRef, "1px solid #98e373");
     }
 
     if (localStorage.getItem("image")) {
       setValidatePictureSuccess(true);
-      pictureRef.current.style.color = "black";
+      changeColor(pictureRef, "black");
     } else {
       setValidatePictureSuccess(false);
     }
 
-    if (
-      (mailRef.current.value =
-        localStorage.getItem("mail") &&
-        "@redberry.ge" === mailRef.current.value.slice(-12))
-    ) {
-      mailRef.current.style.border = "1px solid #98e37e";
+    if (isEmailValid) {
       setValidateMailSuccess(true);
-      mailRef.current.value = localStorage.getItem("mail");
-    } else if (
-      "@redberry.ge" !== mailRef.current.value.slice(-12) &&
-      mailRef.current.value !== ""
-    ) {
+      setBorder(mailRef, "1px solid #98e373");
+    } else if (!isEmailValid && mailRef.current.value !== "") {
       setValidateMailSuccess(false);
-      mailRef.current.value = localStorage.getItem("mail");
-      mailRef.current.style.border = "1px solid #f02424";
+      setBorder(mailRef, "1px solid #f02424");
     }
 
-    if (
-      (phoneRef.current.value =
-        localStorage.getItem("phone") &&
-        phoneRegex.test(phoneRef.current.value))
-    ) {
-      phoneRef.current.style.border = "1px solid #98e37e";
+    if (isPhoneValid) {
+      setBorder(phoneRef, "1px solid #98e373");
       setValidatePhoneSuccess(true);
-      phoneRef.current.value = localStorage.getItem("phone");
-    } else if (
-      !phoneRegex.test(phoneRef.current.value) &&
-      phoneRef.current.value !== ""
-    ) {
+    } else if (!isPhoneValid && phoneRef.current.value !== "") {
       setValidatePhoneSuccess(false);
-      phoneRef.current.style.border = "1px solid #f02424";
-      phoneRef.current.value = localStorage.getItem("phone");
+      setBorder(phoneRef, "1px solid #f02424");
     }
   }, []);
 

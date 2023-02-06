@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Context } from "../Context/Context";
 
 const PrivatePicture = React.forwardRef((props, ref) => {
+  const { formData, setFormData } = useContext(Context);
   return (
     <div className={props.className}>
       <h3
@@ -29,6 +31,10 @@ const PrivatePicture = React.forwardRef((props, ref) => {
             }
             let result = reader.result;
             localStorage.setItem("image", result);
+            setFormData({
+              ...formData,
+              photo: result,
+            });
           };
         }}
         style={{ display: "none" }}

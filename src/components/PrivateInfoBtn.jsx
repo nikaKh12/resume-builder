@@ -1,4 +1,5 @@
 import React from "react";
+import { setBorder, setVisibility } from "../helper/Helper";
 
 const PrivateInfoBtn = React.forwardRef((props, ref) => {
   return (
@@ -7,26 +8,26 @@ const PrivateInfoBtn = React.forwardRef((props, ref) => {
         onClick={(event) => {
           event.preventDefault();
           if (!props.validateNameSuccess) {
-            ref.nameRef.current.style.border = "1px solid #f02424";
-            ref.incorrectNameRef.current.style.visibility = "visible";
+            setBorder(ref.nameRef, "1px solid #f02424");
+            setVisibility(ref.incorrectNameRef, "visible");
           }
           if (!props.validateLastNameSuccess) {
-            ref.lastNameRef.current.style.border = "1px solid #f02424";
-            ref.incorrectLastNameRef.current.style.visibility = "visible";
+            setBorder(ref.lastNameRef, "1px solid #f02424");
+            setVisibility(ref.incorrectLastNameRef, "visible");
           }
           if (!props.validatePictureSuccess) {
-            ref.pictureIconRef.current.style.visibility = "visible";
+            setVisibility(ref.pictureIconRef, "visible");
           }
           if (document.getElementById("upload").files[0]) {
             props.setValidatePictureSuccess(true);
           }
           if (!props.validateMailSuccess) {
-            ref.mailRef.current.style.border = "1px solid #f02424";
-            ref.incorrectMailRef.current.style.visibility = "visible";
+            setBorder(ref.mailRef, "1px solid #f02424");
+            setVisibility(ref.incorrectMailRef, "visible");
           }
           if (!props.validatePhoneSuccess) {
-            ref.phoneRef.current.style.border = "1px solid #f02424";
-            ref.incorrectPhoneRef.current.style.visibility = "visible";
+            setBorder(ref.phoneRef, "1px solid #f02424");
+            setVisibility(ref.incorrectPhoneRef, "visible");
           }
           if (
             props.validateNameSuccess &&
