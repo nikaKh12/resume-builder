@@ -14,7 +14,8 @@ function ContextProvider({ children }) {
   const [pictureCheck, setPictureCheck] = useState(false);
   const [mailCheck, setMailCheck] = useState(false);
   const [phoneCheck, setPhoneCheck] = useState(false);
-  let [plus, setPlus] = useState("");
+  const [plus, setPlus] = useState("");
+  const [privateInfoValidated, setPrivateInfoValidated] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -171,6 +172,8 @@ function ContextProvider({ children }) {
         resetData,
         validatePictureSuccess,
         setValidatePictureSuccess,
+        privateInfoValidated,
+        setPrivateInfoValidated,
       }}
     >
       {children}

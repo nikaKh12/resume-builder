@@ -2,8 +2,7 @@ import React, { useContext, useRef, useEffect } from "react";
 import FormHeader from "./FormHeader";
 import { Link } from "react-router-dom";
 import { Context } from "../Context/Context";
-import { FirstName } from "./FirstName";
-import { LastName } from "./LastName";
+import { InputField } from "./InputField";
 import { PrivatePicture } from "./PrivatePicture";
 import { AboutMe } from "./AboutMe";
 import { Email } from "./Email";
@@ -61,6 +60,7 @@ export default function PrivateInfoForm() {
     phoneRef,
     incorrectPhoneRef,
   };
+  const lastNameRefs = { lastNameRef, incorrectLastNameRef };
   useEffect(() => {
     if (validatePictureSuccess) {
       changeColor(pictureRef, "black");
@@ -147,21 +147,23 @@ export default function PrivateInfoForm() {
       <hr />
       <form>
         <div className="form-names-container">
-          <FirstName
+          <InputField
             className="first-name"
             placeholder="ანზორი"
             value={localStorage.getItem("firstName")}
             onChange={validateName}
-            validateNameSuccess={validateNameSuccess}
+            validateSuccess={validateNameSuccess}
+            title="სახელი"
             ref={refs}
           />
-          <LastName
+          <InputField
             className="last-name"
             placeholder="მუმლაძე"
             value={localStorage.getItem("lastName")}
             onChange={validateLastName}
-            validateLastNameSuccess={validateLastNameSuccess}
-            ref={refs}
+            validateSuccess={validateLastNameSuccess}
+            title="გვარი"
+            ref={lastNameRefs}
           />
         </div>
         <PrivatePicture

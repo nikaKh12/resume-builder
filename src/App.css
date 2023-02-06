@@ -332,3 +332,79 @@ textarea {
 #upload-preview[src] {
   display: block;
 }
+
+/* Experience */
+.experience {
+  width: 100%;
+  display: flex;
+}
+.experience-info-form {
+  width: 55%;
+  background-color: #f9f9f9;
+  padding: 1em 5em;
+  height: 100vh;
+}
+.experience-info-form input {
+  border: 1px solid #bcbcbc;
+  border-radius: 3px;
+}
+.experience-info-form input,
+.experience-info-form textarea {
+  width: 100%;
+  margin: 7px 2px;
+  padding: 10px 5px;
+}
+.experience-form-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.6em 0.5em;
+}
+
+.duration {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2em;
+}
+.duration input {
+  width: 100%;
+  margin: 7px 2px;
+  padding: 10px 5px;
+}
+
+.exp {
+  justify-content: space-between;
+}
+
+.add-more-experience {
+  margin-top: 3em;
+}
+.add {
+  background-color: #62a1eb;
+  color: white;
+  border: none;
+  padding: 18px 24px;
+  outline: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.duration-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.duration-start,
+.duration-end {
+  width: 40%;
+}
+
+.position-container,
+.employer-container,
+.duration-container,
+.description-container {
+  margin-top: 2em;
+}
+
+.description-container textarea {
+  height: 15vh;
+}

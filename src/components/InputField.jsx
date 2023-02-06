@@ -1,10 +1,10 @@
 import React from "react";
 
-const FirstName = React.forwardRef((props, ref) => {
+const InputField = React.forwardRef((props, ref) => {
   return (
     <div className={props.className}>
       <label for={props.className} className="top-label">
-        სახელი
+        {props.title}
       </label>
       <input
         type="text"
@@ -12,19 +12,19 @@ const FirstName = React.forwardRef((props, ref) => {
         className={props.className}
         value={props.value}
         name={props.className}
-        ref={ref.nameRef}
+        ref={ref.nameRef || ref.lastNameRef}
         onChange={props.onChange}
       />
-      {props.validateNameSuccess && (
+      {props.validateSuccess && (
         <i className="fa-sharp fa-solid fa-circle-check" id="correct-name"></i>
       )}
-      {props.validateNameSuccess === false && (
+      {props.validateSuccess === false && (
         <i class="fa-solid fa-triangle-exclamation" id="incorrect-name"></i>
       )}
       <i
         class="fa-solid fa-triangle-exclamation"
         id="incorrect-name"
-        ref={ref.incorrectNameRef}
+        ref={ref.incorrectNameRef || ref.incorrectLastNameRef}
         style={{ visibility: "hidden" }}
       ></i>
 
@@ -35,4 +35,4 @@ const FirstName = React.forwardRef((props, ref) => {
   );
 });
 
-export { FirstName };
+export { InputField };
