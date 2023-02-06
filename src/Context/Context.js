@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const Context = React.createContext();
 
@@ -23,6 +23,7 @@ function ContextProvider({ children }) {
     mail: "",
     phone: "",
   });
+
   const validateName = (event) => {
     let value = event.target.value;
     let regex = /^[\u10A0-\u10FF]+$/;

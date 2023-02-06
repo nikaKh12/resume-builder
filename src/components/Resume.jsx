@@ -1,28 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { Context } from "../Context/Context";
 import Logo3 from "../images/logo-3.png";
 
 export default function Resume() {
-  const {
-    validateNameSuccess,
-    validateLastNameSuccess,
-    validateMailSuccess,
-    validatePhoneSuccess,
-    validateName,
-    validateMail,
-    validateNumber,
-    validateLastName,
-    validateAbout,
-    selectedImage,
-    formData,
-    check,
-  } = useContext(Context);
-  // localStorage.removeItem("firstName");
-  // localStorage.removeItem("lastName");
-  // localStorage.removeItem("about");
-  // localStorage.removeItem("phone");
-  // localStorage.removeItem("mail");
-  // localStorage.removeItem("image");
+  const { formData } = useContext(Context);
 
   return (
     <div className="resume-container">

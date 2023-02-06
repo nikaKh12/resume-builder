@@ -99,7 +99,15 @@ textarea::placeholder {
 .private-picture {
   display: flex;
   margin-top: 2em;
+  position: relative;
   gap: 1em;
+}
+#incorrect-picture {
+  color: #f02424;
+  position: absolute;
+  right: 55%;
+  top: 50%;
+  transform: translateY(-50%);
 }
 .about-me {
   display: flex;
@@ -290,7 +298,8 @@ textarea {
   margin: 1.5em 0;
 }
 .about-container {
-  max-width: 43vh;
+  max-width: 55%;
+  word-wrap: break-word;
   line-height: 23px;
 }
 .about-container p {
