@@ -262,7 +262,7 @@ textarea {
   margin-top: 3em;
   display: flex;
   flex-direction: column;
-  padding: 0 3em;
+  padding: 0 5em;
   position: relative;
 }
 
@@ -276,6 +276,8 @@ textarea {
 .resume-container h4 {
   font-size: 18px;
   font-weight: 700;
+  padding-top: 0.5em;
+  margin-bottom: 2em;
 }
 
 .name-container {
@@ -298,9 +300,8 @@ textarea {
   margin: 1.5em 0;
 }
 .about-container {
-  max-width: 55%;
+  max-width: 60%;
   word-wrap: break-word;
-  line-height: 23px;
 }
 .about-container p {
   font-size: 16px;
@@ -308,16 +309,13 @@ textarea {
 
 #upload-preview {
   border-radius: 50%;
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
   position: absolute;
-  right: 0;
+  right: 6%;
   margin-right: 1em;
   object-fit: cover;
   top: 0;
-}
-.resume-container h4 {
-  margin-bottom: 2em;
 }
 .logo-3 {
   width: 42px;
@@ -407,4 +405,30 @@ textarea {
 
 .description-container textarea {
   height: 15vh;
+}
+.position-container {
+  position: relative;
+}
+.employer-container {
+  position: relative;
+}
+#correct-position,
+#correct-employer {
+  color: #98e37e;
+  position: absolute;
+  top: 40%;
+  right: 5px;
+}
+#incorrect-position,
+#incorrect-employer {
+  color: #f02424;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: -3.5%;
+}
+
+.description-container {
+  max-width: 100%;
+  word-wrap: break-word;
 }
