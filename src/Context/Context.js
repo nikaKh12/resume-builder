@@ -8,12 +8,14 @@ function ContextProvider({ children }) {
   const [validatePictureSuccess, setValidatePictureSuccess] = useState("");
   const [validateMailSuccess, setValidateMailSuccess] = useState("");
   const [validatePhoneSuccess, setValidatePhoneSuccess] = useState("");
-  const [selectedImage, setSelectedImage] = useState();
-  const [nameCheck, setNameCheck] = useState(false);
-  const [lastNameCheck, setLastNameCheck] = useState(false);
-  const [pictureCheck, setPictureCheck] = useState(false);
-  const [mailCheck, setMailCheck] = useState(false);
-  const [phoneCheck, setPhoneCheck] = useState(false);
+  const [validatePositionSuccess, setValidatePositionSuccess] = useState("");
+  const [validateEmployerSuccess, setValidateEmployerSuccess] = useState("");
+  const [validateDurationStartSuccess, setValidateDurationStartSuccess] =
+    useState("");
+  const [validateDurationEndSuccess, setValidateDurationEndSuccess] =
+    useState("");
+  const [validateDescriptionSuccess, setValidateDescriptionSuccess] =
+    useState("");
   const [plus, setPlus] = useState("");
   const [privateInfoValidated, setPrivateInfoValidated] = useState(false);
   const [formData, setFormData] = useState({
@@ -23,6 +25,11 @@ function ContextProvider({ children }) {
     about: "",
     mail: "",
     phone: "",
+    position: "",
+    employer: "",
+    durationStart: "",
+    durationEnd: "",
+    description: "",
   });
 
   const validateName = (event) => {
@@ -34,11 +41,9 @@ function ContextProvider({ children }) {
     });
     if (value.length >= 2 && regex.test(value)) {
       setValidateNameSuccess(true);
-      setNameCheck(true);
       event.target.style.border = "1px solid #98e37e";
     } else {
       setValidateNameSuccess(false);
-      setNameCheck(false);
       event.target.style.border = "1px solid #f93b1d";
     }
     localStorage.setItem("firstName", value);
@@ -53,11 +58,9 @@ function ContextProvider({ children }) {
     });
     if (value.length >= 2 && regex.test(value)) {
       setValidateLastNameSuccess(true);
-      setLastNameCheck(true);
       event.target.style.border = "1px solid #98e37e";
     } else {
       setValidateLastNameSuccess(false);
-      setLastNameCheck(false);
       event.target.style.border = "1px solid #f93b1d";
     }
     localStorage.setItem("lastName", value);
@@ -86,11 +89,9 @@ function ContextProvider({ children }) {
     });
     if (check === value.slice(-12)) {
       setValidateMailSuccess(true);
-      setMailCheck(true);
       event.target.style.border = "1px solid #98e37e";
     } else {
       setValidateMailSuccess(false);
-      setMailCheck(false);
       event.target.style.border = "1px solid #f93b1d";
     }
     localStorage.setItem("mail", value);
@@ -98,7 +99,8 @@ function ContextProvider({ children }) {
 
   const validateNumber = (event) => {
     let value = event.target.value;
-    let regex = /^\+995\d{3}\d{2}\d{2}\d{2}|^\+995 \d{3} \d{2} \d{2} \d{2}$/;
+    let regex =
+      /^\+995\d{3}\d{2}\d{2}\d{2}$|^\+995 \d{3} \d{2} \d{2} \d{2}$|^\+995 \d{3}\d{2}\d{2}\d{2}$/;
     setFormData({
       ...formData,
       phone: value,
@@ -111,23 +113,84 @@ function ContextProvider({ children }) {
     }
     if (regex.test(value)) {
       setValidatePhoneSuccess(true);
-      setPhoneCheck(true);
       event.target.style.border = "1px solid #98e37e";
     } else {
       setValidatePhoneSuccess(false);
-      setPhoneCheck(false);
       event.target.style.border = "1px solid #f93b1d";
     }
     localStorage.setItem("phone", value);
   };
 
-  const imageChange = (e) => {
-    if (e.target.files && e.target.files.length > 0) {
-      setPictureCheck(true);
-      setSelectedImage(e.target.files[0]);
+  const validatePosition = (event) => {
+    let value = event.target.value;
+    setFormData({
+      ...formData,
+      position: value,
+    });
+    if (value.length >= 2) {
+      setValidatePositionSuccess(true);
+      event.target.style.border = "1px solid #98e37e";
     } else {
-      setPictureCheck(false);
+      setValidatePositionSuccess(false);
+      event.target.style.border = "1px solid #f93b1d";
     }
+    localStorage.setItem("position", value);
+  };
+
+  const validateEmployer = (event) => {
+    let value = event.target.value;
+    setFormData({
+      ...formData,
+      employer: value,
+    });
+    if (value.length >= 2) {
+      setValidateEmployerSuccess(true);
+      event.target.style.border = "1px solid #98e37e";
+    } else {
+      setValidateEmployerSuccess(false);
+      event.target.style.border = "1px solid #f93b1d";
+    }
+    localStorage.setItem("employer", value);
+  };
+
+  const validateDuration = (event) => {
+    let value = event.target.value;
+    if (event.target.className === "start" && value !== "") {
+      setFormData({
+        ...formData,
+        durationStart: value,
+      });
+      setValidateDurationStartSuccess(true);
+      event.target.style.border = "1px solid #98e37e";
+      localStorage.setItem("durationStart", value);
+    } else if (event.target.className === "end" && value !== "") {
+      setFormData({
+        ...formData,
+        durationEnd: value,
+      });
+      setValidateDurationEndSuccess(true);
+      event.target.style.border = "1px solid #98e37e";
+      localStorage.setItem("durationEnd", value);
+    } else {
+      setValidateDurationStartSuccess(false);
+      setValidateDurationEndSuccess(false);
+    }
+  };
+
+  const validateDescription = (event) => {
+    let value = event.target.value;
+    setFormData({
+      ...formData,
+      description: value,
+    });
+    if (value !== "") {
+      setValidateDescriptionSuccess(true);
+      event.target.style.border = "1px solid #98e37e";
+    } else {
+      setValidateDescriptionSuccess(false);
+      event.target.style.border = "1px solid #8c8c8c";
+    }
+    localStorage.setItem("description", value);
   };
 
   const resetData = () => {
@@ -137,10 +200,18 @@ function ContextProvider({ children }) {
     localStorage.removeItem("phone");
     localStorage.removeItem("mail");
     localStorage.removeItem("image");
+    localStorage.removeItem("position");
+    localStorage.removeItem("employer");
     setValidateNameSuccess("");
     setValidateLastNameSuccess("");
     setValidateMailSuccess("");
     setValidatePhoneSuccess("");
+    setValidatePositionSuccess("");
+    setValidateEmployerSuccess("");
+    setValidateDurationStartSuccess("");
+    setValidateDurationEndSuccess("");
+    setValidateDescriptionSuccess(false);
+    setPrivateInfoValidated(false);
   };
 
   return (
@@ -159,21 +230,29 @@ function ContextProvider({ children }) {
         validateAbout,
         validateLastNameSuccess,
         setValidateLastNameSuccess,
-        selectedImage,
-        setSelectedImage,
-        imageChange,
         formData,
         setFormData,
-        nameCheck,
-        lastNameCheck,
-        pictureCheck,
-        mailCheck,
-        phoneCheck,
         resetData,
         validatePictureSuccess,
         setValidatePictureSuccess,
         privateInfoValidated,
         setPrivateInfoValidated,
+        validatePosition,
+        validatePositionSuccess,
+        setValidatePositionSuccess,
+        validateEmployer,
+        validateEmployerSuccess,
+        setValidateEmployerSuccess,
+        setValidateMailSuccess,
+        validateDuration,
+        validateDurationStartSuccess,
+        setValidateDurationStartSuccess,
+        validateDurationEndSuccess,
+        setValidateDurationEndSuccess,
+        validateDescription,
+        validateDescriptionSuccess,
+        setValidateDescriptionSuccess,
+        setValidateMailSuccess,
       }}
     >
       {children}
