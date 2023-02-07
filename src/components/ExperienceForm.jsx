@@ -49,16 +49,6 @@ export default function PrivateInfoForm() {
     const isDurationStartValid = durationStartRef.current.value !== "";
     const isDurationEndValid = durationEndRef.current.value !== "";
     const isDescriptionValid = descriptionRef.current.value !== "";
-    // lastNameRef.current.value = localStorage.getItem("lastName");
-    // phoneRef.current.value = localStorage.getItem("phone");
-    // const email = (mailRef.current.value = localStorage.getItem("mail"));
-    // const isNameValid =
-    //   regex.test(nameRef.current.value) && nameRef.current.value.length >= 2;
-    // const isLastNameValid =
-    //   regex.test(lastNameRef.current.value) &&
-    //   lastNameRef.current.value.length >= 2;
-    // const isEmailValid = email && "@redberry.ge" === email.slice(-12);
-    // const isPhoneValid = phoneRegex.test(phoneRef.current.value);
 
     if (isPositionValid) {
       setValidatePositionSuccess(true);
