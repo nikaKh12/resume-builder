@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
 import { Context } from "../Context/Context";
+import { useLocation } from "react-router-dom";
 import Logo3 from "../images/logo-3.png";
 
 export default function Resume() {
-  const { formData } = useContext(Context);
+  const { formData, privateInfoValidated } = useContext(Context);
+  const location = useLocation();
 
   return (
     <div className="resume-container">
@@ -33,6 +35,38 @@ export default function Resume() {
         {/* <img id="upload-preview" src={localStorage.getItem("image")} /> */}
 
         <img id="upload-preview" src={localStorage.getItem("image")} />
+      </div>
+      {location.pathname === "/experience" && (
+        <hr style={{ marginTop: "5em", border: "1px solid #C8C8C8" }} />
+      )}
+      {localStorage.getItem("position") && (
+        <h4 style={{ paddingTop: "1.5em" }}>გამოცდილება</h4>
+      )}
+      <p
+        style={{ fontWeight: "bold", fontSize: "16px", marginBottom: "0.5em" }}
+      >
+        {localStorage.getItem("position")}, {localStorage.getItem("employer")}
+      </p>
+      <p
+        style={{
+          color: "#909090",
+          fontSize: "16px",
+          fontWeight: "400",
+        }}
+      >
+        {localStorage.getItem("durationStart")} -{" "}
+        {localStorage.getItem("durationEnd")}
+      </p>
+      <div className="description-container">
+        <p
+          style={{
+            fontSize: "16px",
+            fontWeight: "400",
+            color: "black",
+          }}
+        >
+          {localStorage.getItem("description")}
+        </p>
       </div>
     </div>
   );

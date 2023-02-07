@@ -18,51 +18,88 @@ import {
 
 export default function PrivateInfoForm() {
   const {
-    validateNameSuccess,
-    setValidateNameSuccess,
-    validateLastNameSuccess,
-    setValidateLastNameSuccess,
-    validatePictureSuccess,
-    setValidatePictureSuccess,
-    setValidateMailSuccess,
-    setValidatePhoneSuccess,
-    validateMailSuccess,
-    validatePhoneSuccess,
-    validateName,
-    validateMail,
-    validateAbout,
-    validateNumber,
-    validateLastName,
     resetData,
+    validatePosition,
+    validatePositionSuccess,
+    setValidatePositionSuccess,
+    validateEmployer,
+    validateEmployerSuccess,
+    setValidateEmployerSuccess,
+    validateDuration,
+    validateDurationStartSuccess,
+    setValidateDurationStartSuccess,
+    validateDurationEndSuccess,
+    setValidateDurationEndSuccess,
+    validateDescription,
+    setValidateDescriptionSuccess,
   } = useContext(Context);
-  const nameRef = useRef(null);
-  const lastNameRef = useRef(null);
-  const pictureRef = useRef(null);
-  const aboutRef = useRef(null);
-  const mailRef = useRef(null);
-  const phoneRef = useRef(null);
-  const incorrectNameRef = useRef(null);
-  const incorrectLastNameRef = useRef(null);
-  const incorrectMailRef = useRef(null);
-  const incorrectPhoneRef = useRef(null);
-  const pictureIconRef = useRef(null);
+  const positionRef = useRef(null);
+  const employerRef = useRef(null);
+  const durationStartRef = useRef(null);
+  const durationEndRef = useRef(null);
+  const descriptionRef = useRef(null);
+  useEffect(() => {
+    positionRef.current.value = localStorage.getItem("position");
+    employerRef.current.value = localStorage.getItem("employer");
+    durationStartRef.current.value = localStorage.getItem("durationStart");
+    durationEndRef.current.value = localStorage.getItem("durationEnd");
+    descriptionRef.current.value = localStorage.getItem("description");
+    const isPositionValid = positionRef.current.value.length >= 2;
+    const isEmployerValid = employerRef.current.value.length >= 2;
+    const isDurationStartValid = durationStartRef.current.value !== "";
+    const isDurationEndValid = durationEndRef.current.value !== "";
+    const isDescriptionValid = descriptionRef.current.value !== "";
+    // lastNameRef.current.value = localStorage.getItem("lastName");
+    // phoneRef.current.value = localStorage.getItem("phone");
+    // const email = (mailRef.current.value = localStorage.getItem("mail"));
+    // const isNameValid =
+    //   regex.test(nameRef.current.value) && nameRef.current.value.length >= 2;
+    // const isLastNameValid =
+    //   regex.test(lastNameRef.current.value) &&
+    //   lastNameRef.current.value.length >= 2;
+    // const isEmailValid = email && "@redberry.ge" === email.slice(-12);
+    // const isPhoneValid = phoneRegex.test(phoneRef.current.value);
 
-  const refs = {
-    nameRef,
-    incorrectNameRef,
-    lastNameRef,
-    incorrectLastNameRef,
-    pictureRef,
-    pictureIconRef,
-    aboutRef,
-    mailRef,
-    incorrectMailRef,
-    phoneRef,
-    incorrectPhoneRef,
-  };
-  const lastNameRefs = { lastNameRef, incorrectLastNameRef };
+    if (isPositionValid) {
+      setValidatePositionSuccess(true);
+      setBorder(positionRef, "1px solid #98e373");
+    } else if (positionRef.current.value !== "") {
+      setValidatePositionSuccess(false);
+      setBorder(positionRef, "1px solid #f02424");
+    }
 
-  // TO BE REFACTORED
+    if (isEmployerValid) {
+      setValidateEmployerSuccess(true);
+      setBorder(employerRef, "1px solid #98e373");
+    } else if (employerRef.current.value !== "") {
+      setValidateEmployerSuccess(false);
+      setBorder(employerRef, "1px solid #f02424");
+    }
+
+    if (isDurationStartValid) {
+      setValidateDurationStartSuccess(true);
+      setBorder(durationStartRef, "1px solid #98e373");
+    } else {
+      setValidateDurationStartSuccess(true);
+      setBorder(durationStartRef, "1px solid #98e373");
+    }
+
+    if (isDurationEndValid) {
+      setValidateDurationEndSuccess(true);
+      setBorder(durationEndRef, "1px solid #98e373");
+    } else {
+      setValidateDurationEndSuccess(true);
+      setBorder(durationEndRef, "1px solid #98e373");
+    }
+
+    if (isDescriptionValid) {
+      setValidateDescriptionSuccess(true);
+      setBorder(descriptionRef, "1px solid #98e373");
+    } else {
+      setValidateDescriptionSuccess(false);
+      setBorder(descriptionRef, "1px solid #8c8c8c");
+    }
+  }, []);
 
   return (
     <div className="experience-info-form">
@@ -80,10 +117,25 @@ export default function PrivateInfoForm() {
             თანამდებობა
           </label>
           <input
+            ref={positionRef}
+            onChange={validatePosition}
+            value={localStorage.getItem("position")}
             className="position"
             type="text"
             placeholder="დეველოპერი, დიზაინერი, ა.შ."
           />
+          {validatePositionSuccess && (
+            <i
+              className="fa-sharp fa-solid fa-circle-check"
+              id="correct-position"
+            ></i>
+          )}
+          {validatePositionSuccess === false && (
+            <i
+              class="fa-solid fa-triangle-exclamation"
+              id="incorrect-position"
+            ></i>
+          )}
           <label for="position" className="bottom-label">
             მინიმუმ 2 სიმბოლო
           </label>
@@ -92,7 +144,25 @@ export default function PrivateInfoForm() {
           <label for="employer" className="top-label">
             დამსაქმებელი
           </label>
-          <input className="employer" type="text" placeholder="დამსაქმებელი" />
+          <input
+            ref={employerRef}
+            onChange={validateEmployer}
+            className="employer"
+            type="text"
+            placeholder="დამსაქმებელი"
+          />
+          {validateEmployerSuccess && (
+            <i
+              className="fa-sharp fa-solid fa-circle-check"
+              id="correct-employer"
+            ></i>
+          )}
+          {validateEmployerSuccess === false && (
+            <i
+              class="fa-solid fa-triangle-exclamation"
+              id="incorrect-employer"
+            ></i>
+          )}
           <label for="employer" className="bottom-label">
             მინიმუმ 2 სიმბოლო
           </label>
@@ -102,13 +172,25 @@ export default function PrivateInfoForm() {
             <label for="start" className="top-label">
               დაწყების რიცხვი
             </label>
-            <input className="start" type="date" />
+            <input
+              className="start"
+              type="date"
+              value={localStorage.getItem("durationStart")}
+              ref={durationStartRef}
+              onChange={validateDuration}
+            />
           </div>
           <div className="duration-end">
             <label for="end" className="top-label">
               დამთავრების რიცხვი
             </label>
-            <input className="end" type="date" />
+            <input
+              className="end"
+              type="date"
+              value={localStorage.getItem("durationEnd")}
+              ref={durationEndRef}
+              onChange={validateDuration}
+            />
           </div>
         </div>
         <div className="description-container">
@@ -118,6 +200,9 @@ export default function PrivateInfoForm() {
           <textarea
             className="description"
             placeholder="როლი თანამდებობაზე და ზოგადი აღწერა"
+            ref={descriptionRef}
+            value={localStorage.getItem("description")}
+            onChange={validateDescription}
           />
         </div>
         <hr style={{ border: "0.5px solid #C1C1C1", marginTop: "1.5em" }} />
@@ -125,7 +210,9 @@ export default function PrivateInfoForm() {
           <button className="add">მეტი გამოცდილების დამატება</button>
         </div>
         <div className="btn-container exp">
-          <button>უკან</button>
+          <Link to="/private-info">
+            <button>უკან</button>
+          </Link>
           <button>შემდეგი</button>
         </div>
       </form>
