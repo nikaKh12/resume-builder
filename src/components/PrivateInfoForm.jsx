@@ -154,6 +154,7 @@ export default function PrivateInfoForm() {
             onChange={validateName}
             validateSuccess={validateNameSuccess}
             title="სახელი"
+            label="მინიმუმ 2 ასო, ქართული ასოები"
             ref={refs}
           />
           <InputField
@@ -163,6 +164,7 @@ export default function PrivateInfoForm() {
             onChange={validateLastName}
             validateSuccess={validateLastNameSuccess}
             title="გვარი"
+            label="მინიმუმ 2 ასო, ქართული ასოები"
             ref={lastNameRefs}
           />
         </div>
