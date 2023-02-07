@@ -3,7 +3,11 @@ import React from "react";
 const InputField = React.forwardRef((props, ref) => {
   return (
     <div className={props.className}>
-      <label for={props.className} className="top-label">
+      <label
+        for={props.className}
+        className="top-label"
+        style={{ color: props.validateSuccess === false ? "#f02424" : "black" }}
+      >
         {props.title}
       </label>
       <input
@@ -29,7 +33,7 @@ const InputField = React.forwardRef((props, ref) => {
       ></i>
 
       <label for={props.className} className="bottom-label">
-        მინიმუმ 2 ასო, ქართული ასოები
+        {props.label}
       </label>
     </div>
   );
