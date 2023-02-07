@@ -3,7 +3,13 @@ import React from "react";
 const Phone = React.forwardRef((props, ref) => {
   return (
     <div className={props.className}>
-      <label for={props.className} className="top-label">
+      <label
+        for={props.className}
+        className="top-label"
+        style={{
+          color: props.validatePhoneSuccess === false ? "#f02424" : "black",
+        }}
+      >
         მობილურის ნომერი
       </label>
       {props.validatePhoneSuccess && (
