@@ -3,7 +3,13 @@ import React from "react";
 const Email = React.forwardRef((props, ref) => {
   return (
     <div className={props.className}>
-      <label for={props.className} className="top-label">
+      <label
+        for={props.className}
+        className="top-label"
+        style={{
+          color: props.validateMailSuccess === false ? "#f02424" : "black",
+        }}
+      >
         ელ.ფოსტა
       </label>
       <input
