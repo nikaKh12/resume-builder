@@ -52,6 +52,7 @@ export default function Resume() {
           color: "#909090",
           fontSize: "16px",
           fontWeight: "400",
+          fontStyle: "italic",
         }}
       >
         {localStorage.getItem("durationStart")} -{" "}
@@ -63,6 +64,7 @@ export default function Resume() {
             fontSize: "16px",
             fontWeight: "400",
             color: "black",
+            lineHeight: "22px",
           }}
         >
           {localStorage.getItem("description")}
