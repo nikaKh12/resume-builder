@@ -32,8 +32,6 @@ export default function Resume() {
         <p>{localStorage.getItem("about")}</p>
       </div>
       <div className="image-preview">
-        {/* <img id="upload-preview" src={localStorage.getItem("image")} /> */}
-
         <img id="upload-preview" src={localStorage.getItem("image")} />
       </div>
       {location.pathname === "/experience" && (
@@ -45,7 +43,9 @@ export default function Resume() {
       <p
         style={{ fontWeight: "bold", fontSize: "16px", marginBottom: "0.5em" }}
       >
-        {localStorage.getItem("position")}, {localStorage.getItem("employer")}
+        {localStorage.getItem("position")}
+        {localStorage.getItem("position") && ","}{" "}
+        {localStorage.getItem("employer")}
       </p>
       <p
         style={{
@@ -55,7 +55,8 @@ export default function Resume() {
           fontStyle: "italic",
         }}
       >
-        {localStorage.getItem("durationStart")} -{" "}
+        {localStorage.getItem("durationStart")}{" "}
+        {localStorage.getItem("durationStart" && "-")}{" "}
         {localStorage.getItem("durationEnd")}
       </p>
       <div className="description-container">

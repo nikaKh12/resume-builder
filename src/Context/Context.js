@@ -3,6 +3,7 @@ import React, { useState } from "react";
 const Context = React.createContext();
 
 function ContextProvider({ children }) {
+  const [experienceCounter, setExperienceCounter] = useState(0);
   const [validateNameSuccess, setValidateNameSuccess] = useState("");
   const [validateLastNameSuccess, setValidateLastNameSuccess] = useState("");
   const [validatePictureSuccess, setValidatePictureSuccess] = useState("");
@@ -202,6 +203,9 @@ function ContextProvider({ children }) {
     localStorage.removeItem("image");
     localStorage.removeItem("position");
     localStorage.removeItem("employer");
+    localStorage.removeItem("durationStart");
+    localStorage.removeItem("durationEnd");
+    localStorage.removeItem("description");
     setValidateNameSuccess("");
     setValidateLastNameSuccess("");
     setValidateMailSuccess("");
@@ -210,7 +214,7 @@ function ContextProvider({ children }) {
     setValidateEmployerSuccess("");
     setValidateDurationStartSuccess("");
     setValidateDurationEndSuccess("");
-    setValidateDescriptionSuccess(false);
+    setValidateDescriptionSuccess("");
     setPrivateInfoValidated(false);
   };
 
