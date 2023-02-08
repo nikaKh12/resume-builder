@@ -339,8 +339,17 @@ textarea {
 .experience-info-form {
   width: 55%;
   background-color: #f9f9f9;
+  overflow-y: scroll;
   padding: 1em 5em;
   height: 100vh;
+}
+.experience-info-form::-webkit-scrollbar {
+  background-color: white;
+  width: 3px;
+}
+.experience-info-form::-webkit-scrollbar-thumb {
+  background: #8c8c8c;
+  border-radius: 10px;
 }
 .experience-info-form input {
   border: 1px solid #bcbcbc;
