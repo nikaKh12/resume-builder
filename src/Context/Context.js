@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { EXPERIENCE, EXPERIENCES_KEY } from "../constants";
+import { getItemFromLocalStorage } from "../helper/Helper";
+import uuid from "react-uuid";
 
 const Context = React.createContext();
 
 function ContextProvider({ children }) {
-  const [experienceCounter, setExperienceCounter] = useState(0);
   const [validateNameSuccess, setValidateNameSuccess] = useState("");
   const [validateLastNameSuccess, setValidateLastNameSuccess] = useState("");
   const [validatePictureSuccess, setValidatePictureSuccess] = useState("");
@@ -32,6 +34,17 @@ function ContextProvider({ children }) {
     durationEnd: "",
     description: "",
   });
+  const [experiences, setExperiences] = useState({
+    [uuid()]: { ...EXPERIENCE },
+  });
+
+  useEffect(() => {
+    const experiencesFromLocalStorage =
+      getItemFromLocalStorage(EXPERIENCES_KEY);
+    if (Object.keys(experiencesFromLocalStorage || {})?.length) {
+      setExperiences(experiencesFromLocalStorage);
+    }
+  }, []);
 
   const validateName = (event) => {
     let value = event.target.value;
@@ -122,76 +135,52 @@ function ContextProvider({ children }) {
     localStorage.setItem("phone", value);
   };
 
-  const validatePosition = (event) => {
-    let value = event.target.value;
-    setFormData({
-      ...formData,
-      position: value,
-    });
+  const validatePosition = (key, targetKey, value) => {
+    const updatedExperiences = { ...experiences };
     if (value.length >= 2) {
-      setValidatePositionSuccess(true);
-      event.target.style.border = "1px solid #98e37e";
+      updatedExperiences[key][targetKey].isValid = true;
     } else {
-      setValidatePositionSuccess(false);
-      event.target.style.border = "1px solid #f93b1d";
+      updatedExperiences[key][targetKey].isValid = false;
     }
-    localStorage.setItem("position", value);
+    updatedExperiences[key][targetKey].touched = true;
+
+    setExperiences(updatedExperiences);
   };
 
-  const validateEmployer = (event) => {
-    let value = event.target.value;
-    setFormData({
-      ...formData,
-      employer: value,
-    });
+  const validateEmployer = (key, targetKey, value) => {
+    const updatedExperiences = { ...experiences };
     if (value.length >= 2) {
-      setValidateEmployerSuccess(true);
-      event.target.style.border = "1px solid #98e37e";
+      updatedExperiences[key][targetKey].isValid = true;
     } else {
-      setValidateEmployerSuccess(false);
-      event.target.style.border = "1px solid #f93b1d";
+      updatedExperiences[key][targetKey].isValid = false;
     }
-    localStorage.setItem("employer", value);
+    updatedExperiences[key][targetKey].touched = true;
+
+    setExperiences(updatedExperiences);
   };
 
-  const validateDuration = (event) => {
-    let value = event.target.value;
-    if (event.target.className === "start" && value !== "") {
-      setFormData({
-        ...formData,
-        durationStart: value,
-      });
-      setValidateDurationStartSuccess(true);
-      event.target.style.border = "1px solid #98e37e";
-      localStorage.setItem("durationStart", value);
-    } else if (event.target.className === "end" && value !== "") {
-      setFormData({
-        ...formData,
-        durationEnd: value,
-      });
-      setValidateDurationEndSuccess(true);
-      event.target.style.border = "1px solid #98e37e";
-      localStorage.setItem("durationEnd", value);
-    } else {
-      setValidateDurationStartSuccess(false);
-      setValidateDurationEndSuccess(false);
-    }
-  };
-
-  const validateDescription = (event) => {
-    let value = event.target.value;
-    setFormData({
-      ...formData,
-      description: value,
-    });
+  const validateDuration = (key, targetKey, value) => {
+    const updatedExperiences = { ...experiences };
     if (value !== "") {
-      setValidateDescriptionSuccess(true);
-      event.target.style.border = "1px solid #98e37e";
+      updatedExperiences[key][targetKey].isValid = true;
     } else {
-      setValidateDescriptionSuccess(false);
-      event.target.style.border = "1px solid #8c8c8c";
+      updatedExperiences[key][targetKey].isValid = false;
     }
-    localStorage.setItem("description", value);
+    updatedExperiences[key][targetKey].touched = true;
+
+    setExperiences(updatedExperiences);
+  };
+
+  const validateDescription = (key, targetKey, value) => {
+    const updatedExperiences = { ...experiences };
+    if (value !== "") {
+      updatedExperiences[key][targetKey].isValid = true;
+    } else {
+      updatedExperiences[key][targetKey].isValid = false;
+    }
+    updatedExperiences[key][targetKey].touched = true;
+
+    setExperiences(updatedExperiences);
   };
 
   const resetData = () => {
@@ -257,6 +246,8 @@ function ContextProvider({ children }) {
         validateDescriptionSuccess,
         setValidateDescriptionSuccess,
         setValidateMailSuccess,
+        experiences,
+        setExperiences,
       }}
     >
       {children}
