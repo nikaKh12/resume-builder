@@ -184,17 +184,7 @@ function ContextProvider({ children }) {
   };
 
   const resetData = () => {
-    localStorage.removeItem("firstName");
-    localStorage.removeItem("lastName");
-    localStorage.removeItem("about");
-    localStorage.removeItem("phone");
-    localStorage.removeItem("mail");
-    localStorage.removeItem("image");
-    localStorage.removeItem("position");
-    localStorage.removeItem("employer");
-    localStorage.removeItem("durationStart");
-    localStorage.removeItem("durationEnd");
-    localStorage.removeItem("description");
+    localStorage.clear();
     setValidateNameSuccess("");
     setValidateLastNameSuccess("");
     setValidateMailSuccess("");
@@ -203,6 +193,7 @@ function ContextProvider({ children }) {
     setValidateEmployerSuccess("");
     setValidateDurationStartSuccess("");
     setValidateDurationEndSuccess("");
+
     setValidateDescriptionSuccess("");
     setPrivateInfoValidated(false);
   };
