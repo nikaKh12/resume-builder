@@ -16,14 +16,19 @@ export default function Resume() {
         <h1 id="last-name">{localStorage.getItem("lastName")}</h1>
       </div>
       <div className="contact">
-        <p>
-          <i class="fa-solid fa-at"></i>&nbsp;{localStorage.getItem("mail")}
-        </p>
-        <p>
-          <i class="fa-solid fa-phone"></i>&nbsp;{localStorage.getItem("phone")}
-        </p>
+        {localStorage.getItem("mail") && (
+          <p>
+            <i class="fa-solid fa-at"></i>&nbsp;{localStorage.getItem("mail")}
+          </p>
+        )}
+        {localStorage.getItem("phone") && (
+          <p>
+            <i class="fa-solid fa-phone"></i>&nbsp;
+            {localStorage.getItem("phone")}
+          </p>
+        )}
       </div>
-      {<h4>ჩემ შესახებ</h4>}
+      {localStorage.getItem("about") && <h4>ჩემ შესახებ</h4>}
 
       <div className="about-container">
         <p>{localStorage.getItem("about")}</p>
@@ -43,7 +48,9 @@ export default function Resume() {
         {/* {localStorage.getItem("position")}
         {localStorage.getItem("position") && ","}{" "}
         {localStorage.getItem("employer")} */}
-        <h4 style={{ paddingTop: "1.5em" }}>გამოცდილება</h4>
+        {localStorage.getItem("experiences") && (
+          <h4 style={{ paddingTop: "1.5em" }}>გამოცდილება</h4>
+        )}
         {Object.keys(experiences).map(
           (key) =>
             experiences[key] && (
