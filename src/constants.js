@@ -19,6 +19,11 @@ const EXPERIENCE = {
     isValid: false,
     touched: false,
   },
+  description: {
+    value: "",
+    isValid: false,
+    touched: false,
+  },
 };
 
 const EXPERIENCES_KEY = "experiences";

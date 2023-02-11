@@ -10,7 +10,6 @@ export default function Resume() {
 
   return (
     <div className="resume-container">
-      <img src={Logo3} className="logo-3" />
       <div className="name-container">
         <h1 id="first-name">{localStorage.getItem("firstName")}</h1>&nbsp;&nbsp;
         <h1 id="last-name">{localStorage.getItem("lastName")}</h1>
@@ -48,9 +47,11 @@ export default function Resume() {
         {/* {localStorage.getItem("position")}
         {localStorage.getItem("position") && ","}{" "}
         {localStorage.getItem("employer")} */}
+
         {localStorage.getItem("experiences") && (
           <h4 style={{ paddingTop: "1.5em" }}>გამოცდილება</h4>
         )}
+        {/* <div className="resume-wrapper"> */}
         {Object.keys(experiences).map(
           (key) =>
             experiences[key] && (
@@ -58,6 +59,7 @@ export default function Resume() {
                 {`${experiences[key].position.value}${
                   experiences[key].position.value && ","
                 } ${experiences[key].employer.value}`}
+
                 <p
                   style={{
                     fontStyle: "italic",
@@ -80,34 +82,27 @@ export default function Resume() {
                     lineHeight: "22px",
                   }}
                 ></p>
+                <div className="description-container">
+                  <p
+                    style={{
+                      fontSize: "16px",
+                      fontWeight: "400",
+                      color: "black",
+                      lineHeight: "22px",
+                    }}
+                  >
+                    {`${experiences[key].description.value}`}
+                  </p>
+                </div>
               </div>
             )
         )}
+        {localStorage.getItem("experiences") && (
+          <hr style={{ border: "1px solid #c8c8c8" }} />
+        )}
+        {/* </div> */}
       </p>
-      <p
-        style={{
-          color: "#909090",
-          fontSize: "16px",
-          fontWeight: "400",
-          fontStyle: "italic",
-        }}
-      >
-        {/* {localStorage.getItem("durationStart")}{" "}
-        {localStorage.getItem("durationStart" && "-")}{" "}
-        {localStorage.getItem("durationEnd")} */}
-      </p>
-      <div className="description-container">
-        <p
-          style={{
-            fontSize: "16px",
-            fontWeight: "400",
-            color: "black",
-            lineHeight: "22px",
-          }}
-        >
-          {/* {localStorage.getItem("description")} */}
-        </p>
-      </div>
+      <img src={Logo3} className="logo-3" />
     </div>
   );
 }

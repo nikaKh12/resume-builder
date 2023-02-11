@@ -37,7 +37,7 @@ function ContextProvider({ children }) {
   const [experiences, setExperiences] = useState({
     [uuid()]: { ...EXPERIENCE },
   });
-
+  console.log(experiences);
   useEffect(() => {
     const experiencesFromLocalStorage =
       getItemFromLocalStorage(EXPERIENCES_KEY);
@@ -149,6 +149,7 @@ function ContextProvider({ children }) {
 
   const validateEmployer = (key, targetKey, value) => {
     const updatedExperiences = { ...experiences };
+
     if (value.length >= 2) {
       updatedExperiences[key][targetKey].isValid = true;
     } else {
@@ -185,6 +186,23 @@ function ContextProvider({ children }) {
 
   const resetData = () => {
     localStorage.clear();
+    Object.values(experiences).map((experience) => {
+      experience.position.value = "";
+      experience.position.isValid = false;
+      experience.position.touched = false;
+      experience.employer.value = "";
+      experience.employer.isValid = false;
+      experience.employer.touched = false;
+      experience.startDate.value = "";
+      experience.startDate.isValid = false;
+      experience.startDate.touched = false;
+      experience.endDate.value = "";
+      experience.endDate.isValid = false;
+      experience.endDate.touched = false;
+      experience.description.value = "";
+      experience.description.isValid = false;
+      experience.description.touched = false;
+    });
     setValidateNameSuccess("");
     setValidateLastNameSuccess("");
     setValidateMailSuccess("");
@@ -193,9 +211,11 @@ function ContextProvider({ children }) {
     setValidateEmployerSuccess("");
     setValidateDurationStartSuccess("");
     setValidateDurationEndSuccess("");
-
     setValidateDescriptionSuccess("");
     setPrivateInfoValidated(false);
+    setTimeout(() => {
+      window.location.reload(true);
+    }, 100);
   };
 
   return (

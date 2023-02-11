@@ -42,55 +42,6 @@ export default function ExperienceForm() {
   const durationEndRef = useRef(null);
   const descriptionRef = useRef(null);
 
-  // useLayoutEffect(() => {
-  //   console.log(positionRef.current.value, "value");
-  //   const isPositionValid = positionRef.current.value.length >= 2;
-  //   const isEmployerValid = employerRef.current.value.length >= 2;
-  //   const isDurationStartValid = durationStartRef.current.value !== "";
-  //   const isDurationEndValid = durationEndRef.current.value !== "";
-  //   const isDescriptionValid = descriptionRef.current.value !== "";
-
-  //   if (isPositionValid) {
-  //     setValidatePositionSuccess(true);
-  //     setBorder(positionRef, "1px solid #98e373");
-  //   } else if (positionRef.current.value !== "") {
-  //     setValidatePositionSuccess(false);
-  //     setBorder(positionRef, "1px solid #f02424");
-  //   }
-
-  //   if (isEmployerValid) {
-  //     setValidateEmployerSuccess(true);
-  //     setBorder(employerRef, "1px solid #98e373");
-  //   } else if (employerRef.current.value !== "") {
-  //     setValidateEmployerSuccess(false);
-  //     setBorder(employerRef, "1px solid #f02424");
-  //   }
-
-  //   if (isDurationStartValid) {
-  //     setValidateDurationStartSuccess(true);
-  //     setBorder(durationStartRef, "1px solid #98e373");
-  //   } else {
-  //     setValidateDurationStartSuccess(false);
-  //     setBorder(durationStartRef, "1px solid #8c8c8c");
-  //   }
-
-  //   if (isDurationEndValid) {
-  //     setValidateDurationEndSuccess(true);
-  //     setBorder(durationEndRef, "1px solid #98e373");
-  //   } else {
-  //     setValidateDurationEndSuccess(false);
-  //     setBorder(durationEndRef, "1px solid #8c8c8c");
-  //   }
-
-  //   if (isDescriptionValid) {
-  //     setValidateDescriptionSuccess(true);
-  //     setBorder(descriptionRef, "1px solid #98e373");
-  //   } else {
-  //     setValidateDescriptionSuccess(false);
-  //     setBorder(descriptionRef, "1px solid #8c8c8c");
-  //   }
-  // }, []);
-
   const handleAddExperience = () => {
     setExperiences({ ...experiences, ...{ [uuid()]: { ...EXPERIENCE } } });
   };
@@ -112,7 +63,7 @@ export default function ExperienceForm() {
       setItemToLocalStorage(EXPERIENCES_KEY, updateExperiences),
     500
   );
-  console.log(experiences);
+
   const isFieldValid = (key, targetKey, value) => {
     switch (targetKey) {
       case "position":
@@ -123,10 +74,65 @@ export default function ExperienceForm() {
         return validateDuration(key, targetKey, value);
       case "endDate":
         return validateDuration(key, targetKey, value);
+      case "description":
+        return validateDescription(key, targetKey, value);
       default:
         return true;
     }
   };
+
+  // const handleClick = (event) => {
+  //   Object.values(experiences).map(function (key) {
+  //     if (key.position.isValid && key.position.touched) {
+  //       setBorder(positionRef, "1px solid #98e37e");
+  //     } else {
+  //       setBorder(positionRef, "1px solid #f02424");
+  //     }
+  //     if (key.employer.isValid && key.employer.touched) {
+  //       setBorder(employerRef, "1px solid #98e373");
+  //     } else {
+  //       setBorder(employerRef, "1px solid #f02424");
+  //     }
+  //     if (key.startDate.isValid) {
+  //       setBorder(durationStartRef, "1px solid #98e373");
+  //     } else {
+  //       setBorder(durationStartRef, "1px solid #f02424");
+  //     }
+  //     if (
+  //       key.endDate.isValid &&
+  //       key.endDate.touched &&
+  //       key.endDate.value !== ""
+  //     ) {
+  //       setBorder(durationEndRef, "1px solid #98e373");
+  //     } else {
+  //       setBorder(durationEndRef, "1px solid #f02424");
+  //     }
+  //     if (
+  //       key.description.isValid &&
+  //       key.description.touched &&
+  //       key.description.value !== ""
+  //     ) {
+  //       setBorder(descriptionRef, "1px solid #98e373");
+  //     } else {
+  //       setBorder(descriptionRef, "1px solid #f02424");
+  //     }
+  //     if (
+  //       key.position.isValid &&
+  //       key.position.touched &&
+  //       key.employer.isValid &&
+  //       key.employer.touched &&
+  //       key.startDate.isValid &&
+  //       key.startDate.touched &&
+  //       key.endDate.isValid &&
+  //       key.endDate.touched &&
+  //       key.description.isValid &&
+  //       key.description.touched
+  //     ) {
+  //       console.log("validated");
+  //     }
+  //   });
+  // };
+
   return (
     <div className="experience-info-form">
       <Link to="/">

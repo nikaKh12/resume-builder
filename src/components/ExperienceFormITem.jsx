@@ -15,8 +15,8 @@ function ExperienceFormITem({
   experience,
   onChange,
 }) {
-  const { position, employer, startDate, endDate } = experience;
-  console.log(experience.endDate);
+  const { position, employer, startDate, endDate, description } = experience;
+  console.log(description);
   const isFieldInvalid = (fieldName) => {
     return !fieldName.isValid && fieldName.touched && fieldName.value !== "";
   };
@@ -29,11 +29,24 @@ function ExperienceFormITem({
     )
       return "success";
   };
+
+  const getValidatedClassesForLabels = (fieldName) => {
+    if (isFieldInvalid(fieldName)) return "label-danger";
+    else if (
+      !isFieldInvalid(fieldName) &&
+      fieldName.touched &&
+      fieldName.value !== ""
+    )
+      return "label-success";
+  };
   console.log("here");
   return (
     <div>
       <div className="position-container">
-        <label for="position" className="top-label">
+        <label
+          for="position"
+          className={`top-label ${getValidatedClassesForLabels(position)}`}
+        >
           თანამდებობა
         </label>
         <input
@@ -64,7 +77,10 @@ function ExperienceFormITem({
         </label>
       </div>
       <div className="employer-container">
-        <label for="employer" className="top-label">
+        <label
+          for="employer"
+          className={`top-label ${getValidatedClassesForLabels(employer)}`}
+        >
           დამსაქმებელი
         </label>
         <input
@@ -95,42 +111,97 @@ function ExperienceFormITem({
       </div>
       <div className="duration-container">
         <div className="duration-start">
-          <label for="start" className="top-label">
+          <label
+            for="start"
+            className={`startDate ${
+              startDate.isValid && startDate.touched && startDate.value !== ""
+                ? "label-success"
+                : !startDate.isValid && startDate.touched
+                ? "label-danger"
+                : "label-default"
+            }`}
+          >
             დაწყების რიცხვი
           </label>
           <input
             ref={durationStartRef}
             onChange={(e) => onChange(e, "startDate")}
             value={startDate?.value}
-            className={`startDate ${getValidatedClasses(startDate)}`}
+            className={`startDate ${
+              startDate.isValid && startDate.touched && startDate.value !== ""
+                ? "success"
+                : !startDate.isValid && startDate.touched
+                ? "danger"
+                : "default"
+            }`}
             type="date"
             // value={localStorage.getItem("durationStart")}
           />
         </div>
         <div className="duration-end">
-          <label for="end" className="top-label">
+          <label
+            for="end"
+            className={`endDate ${
+              endDate.isValid && endDate.touched && endDate.value !== ""
+                ? "label-success"
+                : !endDate.isValid && endDate.touched
+                ? "label-danger"
+                : "label-default"
+            }`}
+          >
             დამთავრების რიცხვი
           </label>
           <input
             ref={durationEndRef}
             onChange={(e) => onChange(e, "endDate")}
             value={endDate?.value}
-            className={`endDate ${getValidatedClasses(endDate)}`}
+            className={`endDate ${
+              endDate.isValid && endDate.touched && endDate.value !== ""
+                ? "success"
+                : !endDate.isValid && endDate.touched
+                ? "danger"
+                : "default"
+            }`}
             type="date"
           />
         </div>
       </div>
       <div className="description-container">
-        <label for="description" className="top-label">
+        <label
+          for="description"
+          className={`top-label ${
+            description.isValid &&
+            description.touched &&
+            description.value !== ""
+              ? "label-success"
+              : !description.isValid && description.touched
+              ? "label-danger"
+              : "label-default"
+          }`}
+        >
           აღწერა
         </label>
         <textarea
-          className="description"
-          placeholder="როლი თანამდებობაზე და ზოგადი აღწერა"
           ref={descriptionRef}
-          // value={localStorage.getItem("description")}
-          onChange={validateDescription}
+          onChange={(e) => onChange(e, "description")}
+          value={description?.value}
+          className={`description ${
+            description.isValid &&
+            description.touched &&
+            description.value !== ""
+              ? "success"
+              : !description.isValid && description.touched
+              ? "danger"
+              : "default"
+          }`}
+          placeholder="როლი თანამდებობაზე და ზოგადი აღწერა"
         />
+        {!description.isValid && description.touched && (
+          <i
+            class="fa-solid fa-triangle-exclamation"
+            id="incorrect-description"
+          ></i>
+        )}
       </div>
     </div>
   );
