@@ -441,3 +441,10 @@ textarea {
   max-width: 100%;
   word-wrap: break-word;
 }
+
+.danger {
+  border: 1px solid #f02424 !important  ;
+}
+.success {
+  border: 1px solid #98e37e !important;
+}
