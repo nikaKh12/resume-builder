@@ -20,6 +20,15 @@ const setVisibility = (ref, value) => {
   ref.current.style.visibility = value;
 };
 
+const setItemToLocalStorage = (key, value) => {
+  localStorage.setItem(key, JSON.stringify(value));
+};
+
+const getItemFromLocalStorage = (key) => {
+  const item = localStorage.getItem(key);
+  return item ? JSON.parse(item) : null;
+};
+
 export {
   regex,
   phoneRegex,
@@ -27,4 +36,6 @@ export {
   changeColor,
   setBorder,
   setVisibility,
+  setItemToLocalStorage,
+  getItemFromLocalStorage,
 };
