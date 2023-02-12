@@ -16,7 +16,6 @@ function ExperienceFormITem({
   onChange,
 }) {
   const { position, employer, startDate, endDate, description } = experience;
-  console.log(description);
   const isFieldInvalid = (fieldName) => {
     return !fieldName.isValid && fieldName.touched && fieldName.value !== "";
   };
@@ -113,7 +112,7 @@ function ExperienceFormITem({
         <div className="duration-start">
           <label
             for="start"
-            className={`startDate ${
+            className={`top-label ${
               startDate.isValid && startDate.touched && startDate.value !== ""
                 ? "label-success"
                 : !startDate.isValid && startDate.touched
@@ -141,7 +140,7 @@ function ExperienceFormITem({
         <div className="duration-end">
           <label
             for="end"
-            className={`endDate ${
+            className={`top-label ${
               endDate.isValid && endDate.touched && endDate.value !== ""
                 ? "label-success"
                 : !endDate.isValid && endDate.touched
