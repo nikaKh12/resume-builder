@@ -6,7 +6,7 @@ import React, {
   useLayoutEffect,
 } from "react";
 import FormHeader from "./FormHeader";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../Context/Context";
 import {
   getItemFromLocalStorage,
@@ -17,6 +17,7 @@ import ExperienceFormITem from "./ExperienceFormITem";
 import uuid from "react-uuid";
 import { EXPERIENCE, EXPERIENCES_KEY } from "../constants";
 import { useDebouncedCallback } from "use-debounce";
+import { Navigate } from "react-router-dom";
 export default function ExperienceForm() {
   const {
     resetData,
@@ -41,7 +42,7 @@ export default function ExperienceForm() {
   const durationStartRef = useRef(null);
   const durationEndRef = useRef(null);
   const descriptionRef = useRef(null);
-
+  const navigate = useNavigate();
   const handleAddExperience = () => {
     setExperiences({ ...experiences, ...{ [uuid()]: { ...EXPERIENCE } } });
   };
@@ -133,6 +134,20 @@ export default function ExperienceForm() {
   //   });
   // };
 
+  const handleClick = () => {
+    Object.values(experiences).map((values) => {
+      if (
+        values.position.isValid &&
+        values.employer.isValid &&
+        values.startDate.isValid &&
+        values.endDate.isValid &&
+        values.description.isValid
+      ) {
+        navigate("/education");
+      }
+    });
+  };
+
   return (
     <div className="experience-info-form">
       <Link to="/">
@@ -173,7 +188,7 @@ export default function ExperienceForm() {
         <Link to="/private-info">
           <button>უკან</button>
         </Link>
-        <button>შემდეგი</button>
+        <button onClick={handleClick}>შემდეგი</button>
       </div>
     </div>
   );
