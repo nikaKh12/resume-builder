@@ -483,17 +483,99 @@ textarea {
 .label-default {
   color: black !important;
 }
-/* .resume-wrapper {
+
+/* Education */
+.education {
   width: 100%;
-  border: 1px solid red;
-  height: 200px;
-  overflow-y: scroll;
+  display: flex;
 }
-.resume-wrapper::-webkit-scrollbar {
+.education-info-form {
+  width: 55%;
+  background-color: #f9f9f9;
+  overflow-y: scroll;
+  padding: 1em 5em;
+  height: 100vh;
+}
+.education-info-form::-webkit-scrollbar {
   background-color: white;
   width: 3px;
 }
-.resume-wrapper::-webkit-scrollbar-thumb {
+.education-info-form::-webkit-scrollbar-thumb {
   background: #8c8c8c;
   border-radius: 10px;
-} */
+}
+.education-info-form input {
+  border: 1px solid #bcbcbc;
+  border-radius: 3px;
+}
+.education-info-form input,
+.education-info-form textarea {
+  width: 100%;
+  margin: 7px 2px;
+  padding: 10px 5px;
+}
+.education-form-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.6em 0.5em;
+}
+
+.institute-container {
+  margin-top: 6em;
+}
+.educations-wrapper {
+  margin-top: 2em;
+  display: flex;
+  justify-content: space-between;
+  gap: 5em;
+}
+.educations-wrapper input {
+  width: 100%;
+  margin: 7px 2px;
+  padding: 10px 5px;
+}
+.degree {
+  width: 50%;
+}
+.educations-wrapper .duration-end {
+  width: 50%;
+}
+.add-more-educations {
+  margin-top: 3em;
+}
+
+#btn-container-edu {
+  padding-top: 2.5em;
+}
+select {
+  width: 100% !important;
+  margin: 7px 2px !important;
+  padding: 10px 5px !important;
+  border: 1px solid #bcbcbc !important;
+  outline: none !important;
+}
+
+.institute-container {
+  position: relative;
+}
+#correct-institute {
+  color: #98e37e;
+  position: absolute;
+  top: 40%;
+  right: 5px;
+}
+#incorrect-institute {
+  color: #f02424;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: -3.5%;
+}
+
+#degrees {
+  color: rgba(0, 0, 0, 0.6);
+}
+.due_date {
+  outline: none;
+  border: 1px solid #bcbcbc !important;
+}
