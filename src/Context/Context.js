@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { EXPERIENCE, EXPERIENCES_KEY } from "../constants";
+import {
+  EXPERIENCE,
+  EXPERIENCES_KEY,
+  EDUCATION,
+  EDUCATION_KEY,
+} from "../constants";
 import { getItemFromLocalStorage } from "../helper/Helper";
 import uuid from "react-uuid";
 
@@ -34,24 +39,45 @@ function ContextProvider({ children }) {
     durationEnd: "",
     description: "",
   });
+
   const [experiences, setExperiences] = useState({
     [uuid()]: { ...EXPERIENCE },
   });
-  console.log(experiences);
+  const [educations, setEducations] = useState({
+    [uuid()]: { ...EDUCATION },
+  });
+  const [degreeList, setDegreeList] = useState([]);
   useEffect(() => {
     const experiencesFromLocalStorage =
       getItemFromLocalStorage(EXPERIENCES_KEY);
     if (Object.keys(experiencesFromLocalStorage || {})?.length) {
       setExperiences(experiencesFromLocalStorage);
     }
+    const educationsFromLocalStorage = getItemFromLocalStorage(EDUCATION_KEY);
+    if (Object.keys(educationsFromLocalStorage || {})?.length) {
+      setEducations(educationsFromLocalStorage);
+    }
   }, []);
-
+  const [dataObj, setDataObj] = useState({
+    name: formData.firstName,
+    surname: formData.lastName,
+    email: formData.mail,
+    phone_number: formData.phone,
+    experiences: [experiences],
+    educations: [educations],
+    image: formData.photo,
+    about_me: formData.about,
+  });
   const validateName = (event) => {
     let value = event.target.value;
     let regex = /^[\u10A0-\u10FF]+$/;
     setFormData({
       ...formData,
       firstName: value,
+    });
+    setDataObj({
+      ...dataObj,
+      name: value,
     });
     if (value.length >= 2 && regex.test(value)) {
       setValidateNameSuccess(true);
@@ -70,6 +96,10 @@ function ContextProvider({ children }) {
       ...formData,
       lastName: value,
     });
+    setDataObj({
+      ...dataObj,
+      surname: value,
+    });
     if (value.length >= 2 && regex.test(value)) {
       setValidateLastNameSuccess(true);
       event.target.style.border = "1px solid #98e37e";
@@ -86,6 +116,10 @@ function ContextProvider({ children }) {
       ...formData,
       about: value,
     });
+    setDataObj({
+      ...dataObj,
+      about_me: value,
+    });
     if (value.length > 0) {
       event.target.style.border = "1px solid #98e37e";
     } else {
@@ -100,6 +134,14 @@ function ContextProvider({ children }) {
     setFormData({
       ...formData,
       mail: value,
+    });
+    setDataObj({
+      ...dataObj,
+      name: value,
+    });
+    setDataObj({
+      ...dataObj,
+      email: value,
     });
     if (check === value.slice(-12)) {
       setValidateMailSuccess(true);
@@ -118,6 +160,10 @@ function ContextProvider({ children }) {
     setFormData({
       ...formData,
       phone: value,
+    });
+    setDataObj({
+      ...dataObj,
+      phone_number: JSON.stringify(value),
     });
     if (value[0] !== "+") {
       setPlus("+");
@@ -184,6 +230,54 @@ function ContextProvider({ children }) {
     setExperiences(updatedExperiences);
   };
 
+  const validateInstitute = (key, targetKey, value) => {
+    const updatedEducations = { ...educations };
+    if (value.length >= 2) {
+      updatedEducations[key][targetKey].isValid = true;
+    } else {
+      updatedEducations[key][targetKey].isValid = false;
+    }
+    updatedEducations[key][targetKey].touched = true;
+
+    setEducations(updatedEducations);
+  };
+
+  const validateDegree = (key, targetKey, value) => {
+    const updatedEducations = { ...educations };
+    if (value !== "") {
+      updatedEducations[key][targetKey].isValid = true;
+    } else {
+      updatedEducations[key][targetKey].isValid = false;
+    }
+    updatedEducations[key][targetKey].touched = true;
+
+    setEducations(updatedEducations);
+  };
+
+  const validateDueDate = (key, targetKey, value) => {
+    const updatedEducations = { ...educations };
+    if (value !== "") {
+      updatedEducations[key][targetKey].isValid = true;
+    } else {
+      updatedEducations[key][targetKey].isValid = false;
+    }
+    updatedEducations[key][targetKey].touched = true;
+
+    setEducations(updatedEducations);
+  };
+
+  const validateEducationDescription = (key, targetKey, value) => {
+    const updatedEducations = { ...educations };
+    if (value !== "") {
+      updatedEducations[key][targetKey].isValid = true;
+    } else {
+      updatedEducations[key][targetKey].isValid = false;
+    }
+    updatedEducations[key][targetKey].touched = true;
+
+    setEducations(updatedEducations);
+  };
+
   const resetData = () => {
     localStorage.clear();
     Object.values(experiences).map((experience) => {
@@ -213,6 +307,21 @@ function ContextProvider({ children }) {
     setValidateDurationEndSuccess("");
     setValidateDescriptionSuccess("");
     setPrivateInfoValidated(false);
+    localStorage.clear();
+    Object.values(educations).map((education) => {
+      education.institute.value = "";
+      education.institute.isValid = false;
+      education.institute.touched = false;
+      education.degree.value = "";
+      education.degree.isValid = false;
+      education.degree.touched = false;
+      education.due_date.value = "";
+      education.due_date.isValid = false;
+      education.due_date.touched = false;
+      education.description.value = "";
+      education.description.isValid = false;
+      education.description.touched = false;
+    });
     setTimeout(() => {
       window.location.reload(true);
     }, 100);
@@ -259,6 +368,16 @@ function ContextProvider({ children }) {
         setValidateMailSuccess,
         experiences,
         setExperiences,
+        educations,
+        setEducations,
+        validateInstitute,
+        validateDegree,
+        validateDueDate,
+        validateEducationDescription,
+        degreeList,
+        setDegreeList,
+        dataObj,
+        setDataObj,
       }}
     >
       {children}

@@ -26,6 +26,30 @@ const EXPERIENCE = {
   },
 };
 
-const EXPERIENCES_KEY = "experiences";
+const EDUCATION = {
+  institute: {
+    value: "",
+    isValid: false,
+    touched: false,
+  },
+  degree: {
+    value: "",
+    isValid: false,
+    touched: false,
+  },
+  due_date: {
+    value: "",
+    isValid: false,
+    touched: false,
+  },
+  description: {
+    value: "",
+    isValid: false,
+    touched: false,
+  },
+};
 
-export { EXPERIENCE, EXPERIENCES_KEY };
+const EXPERIENCES_KEY = "experiences";
+const EDUCATION_KEY = "educations";
+
+export { EXPERIENCE, EXPERIENCES_KEY, EDUCATION, EDUCATION_KEY };
