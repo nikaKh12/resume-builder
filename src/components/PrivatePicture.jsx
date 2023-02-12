@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Context } from "../Context/Context";
 
 const PrivatePicture = React.forwardRef((props, ref) => {
-  const { formData, setFormData } = useContext(Context);
+  const { formData, setFormData, dataObj, setDataObj } = useContext(Context);
   return (
     <div className={props.className}>
       <h3
@@ -34,6 +34,10 @@ const PrivatePicture = React.forwardRef((props, ref) => {
             setFormData({
               ...formData,
               photo: result,
+            });
+            setDataObj({
+              ...dataObj,
+              image: result,
             });
           };
         }}
