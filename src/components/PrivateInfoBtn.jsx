@@ -37,7 +37,6 @@ const PrivateInfoBtn = React.forwardRef((props, ref) => {
       props.validateMailSuccess &&
       props.validatePhoneSuccess
     ) {
-      console.log("validated");
       setPrivateInfoValidated(true);
       navigate("/experience");
     }
