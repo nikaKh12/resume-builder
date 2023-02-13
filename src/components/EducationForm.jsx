@@ -65,7 +65,7 @@ export default function EducationForm() {
   };
 
   const [formData, setFormData] = useState({});
-  const post = async () => {
+  const post = () => {
     // const formData = new FormData({
     //   name: "lasha",
     // });
@@ -97,25 +97,71 @@ export default function EducationForm() {
         };
       }),
     };
+    console.log(data, "data");
 
-    // const base64 = localStorage["image"];
-    // const base64Parts = base64.split(",");
-    // const fileFormat = base64Parts[0].split(";")[1];
-    // const fileContent = base64Parts[1];
-    // const file = new File([fileContent], "image", { type: fileFormat });
-    const d = new FormData();
-    d.append("image", data.iamge);
-    Object.keys(data).forEach((key) => {
-      if (key !== "image") {
-        d.append([key], data[key]);
-      }
-    });
+    // setFormData({
+    //   ...dataObj,
+    //   educations: [
+    //     {
+    //       institute:
+    //         dataObj.educations[0][Object.keys(dataObj.educations[0])].institute
+    //           .value,
+    //       degree:
+    //         dataObj.educations[0][Object.keys(dataObj.educations[0])].degree
+    //           .value,
+    //       due_date:
+    //         dataObj.educations[0][Object.keys(dataObj.educations[0])].due_date
+    //           .value,
+    //       description:
+    //         dataObj.educations[0][Object.keys(dataObj.educations[0])]
+    //           .description.value,
+    //     },
+    //   ],
+    //   experiences: [
+    //     {
+    //       position:
+    //         dataObj.experiences[0][Object.keys(dataObj.experiences[0])].position
+    //           .value,
+    //       employer:
+    //         dataObj.experiences[0][Object.keys(dataObj.experiences[0])].employer
+    //           .value,
+    //       start_date:
+    //         dataObj.experiences[0][Object.keys(dataObj.experiences[0])]
+    //           .startDate.value,
+    //       description:
+    //         dataObj.experiences[0][Object.keys(dataObj.experiences[0])]
+    //           .description.value,
+    //     },
+    //   ],
+    // });
+    // console.log("formData, dataObj");
 
+    // formData.set("educations", [
+    //   {
+    //     institute: dataObj.educations.institute,
+    //     degree: dataObj.educations.degree,
+    //     due_date: dataObj.educations.due_date,
+    //     description: dataObj.educations.description,
+    //   },
+    // ]);
+    // formData.set("experiences", [
+    //   {
+    //     position: dataObj.experiences.position,
+    //     employer: dataObj.experiences.employer,
+    //     start_date: dataObj.experiences.start_date,
+    //     description: dataObj.experiences.description,
+    //   },
+    // ]);
+    console.log(formData);
+    const base64 = localStorage["image"];
+    const base64Parts = base64.split(",");
+    const fileFormat = base64Parts[0].split(";")[1];
+    const fileContent = base64Parts[1];
+    const file = new File([fileContent], "image", { type: fileFormat });
     axios
-      .post("https://resume.redberryinternship.ge/api/cvs", d, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+      .post("https://resume.redberryinternship.ge/api/cvs", {
+        ...data,
+        image: file,
       })
       .then((res) => (res.ok ? console.log(formData) : console.log("false")));
     // fetch("https://resume.redberryinternship.ge/api/cvs", {
@@ -127,28 +173,7 @@ export default function EducationForm() {
     // }).then((res) => (res.ok ? console.log(formData) : console.log("false")));
     console.log(formData);
   };
-
-  function getBase64(file) {
-    return new Promise((resolve) => {
-      let fileInfo;
-      let baseURL = "";
-      // Make new FileReader
-      let reader = new FileReader();
-
-      // Convert the file to base64 text
-      reader.readAsDataURL(new Blob(file));
-
-      // on reader load somthing...
-      reader.onload = () => {
-        // Make a fileInfo Object
-        console.log("Called", reader);
-        baseURL = reader.result;
-        console.log(baseURL);
-        resolve(baseURL);
-      };
-      return fileInfo;
-    });
-  }
+  console.log(educations, "educations");
   return (
     <div className="education-info-form">
       <Link to="/">

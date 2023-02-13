@@ -20,15 +20,6 @@ const PrivatePicture = React.forwardRef((props, ref) => {
           let output = document.getElementById("upload-preview");
           output.src = URL.createObjectURL(e.target.files[0]);
           const image = e.target.files[0];
-          console.log(image, "image");
-
-          var _reader = new FileReader();
-          _reader.readAsDataURL(image);
-          _reader.onload = function () {
-            localStorage.setItem("test_image", _reader.result);
-          };
-
-          // localStorage.setItem("test_image", JSON.stringify(image));
           const reader = new FileReader();
           reader.readAsDataURL(image);
           reader.onload = () => {
