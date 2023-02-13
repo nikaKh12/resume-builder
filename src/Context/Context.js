@@ -63,13 +63,26 @@ function ContextProvider({ children }) {
     surname: formData.lastName,
     email: formData.mail,
     phone_number: formData.phone,
-    experiences: [experiences],
-    educations: [educations],
+    experiences: experiences,
+    educations: educations,
     image: formData.photo,
     about_me: formData.about,
   });
+  const getRequestData = () => {
+    return {
+      name: formData.firstName || localStorage.getItem("firstName"),
+      surname: formData.lastName || localStorage.getItem("lastName"),
+      email: formData.mail || localStorage.getItem("mail"),
+      phone_number: formData.phone || localStorage.getItem("phone"),
+      experiences: experiences || getItemFromLocalStorage("experiences"),
+      educations: educations || getItemFromLocalStorage("educations"),
+      image: formData.photo || localStorage.getItem("image"),
+      about_me: formData.about || localStorage.getItem("about"),
+    };
+  };
+
   const validateName = (event) => {
-    let value = event.target.value;
+    let value = event.target.value.replace(/\s+/g, "");
     let regex = /^[\u10A0-\u10FF]+$/;
     setFormData({
       ...formData,
@@ -90,7 +103,7 @@ function ContextProvider({ children }) {
   };
 
   const validateLastName = (event) => {
-    let value = event.target.value;
+    let value = event.target.value.replace(/\s+/g, "");
     let regex = /^[\u10A0-\u10FF]+$/;
     setFormData({
       ...formData,
@@ -163,7 +176,7 @@ function ContextProvider({ children }) {
     });
     setDataObj({
       ...dataObj,
-      phone_number: JSON.stringify(value),
+      phone_number: value,
     });
     if (value[0] !== "+") {
       setPlus("+");
@@ -378,6 +391,7 @@ function ContextProvider({ children }) {
         setDegreeList,
         dataObj,
         setDataObj,
+        getRequestData,
       }}
     >
       {children}

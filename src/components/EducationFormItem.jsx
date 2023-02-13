@@ -5,7 +5,7 @@ export default function EducationFormItem({ education, onChange }) {
   const { degreeList, setDegreeList } = useContext(Context);
   const { institute, degree, due_date, description } = education;
   const isFieldInvalid = (fieldName) => {
-    return !fieldName.isValid && fieldName.touched && fieldName.value !== "";
+    return !fieldName?.isValid && fieldName?.touched && fieldName?.value !== "";
   };
   const getValidatedClasses = (fieldName) => {
     if (isFieldInvalid(fieldName)) return "danger";
@@ -84,7 +84,7 @@ export default function EducationFormItem({ education, onChange }) {
           >
             <option value="აირჩიეთ ხარისხი">აირჩიეთ ხარისხი</option>
             {degreeList.map((degree) => (
-              <option value={degree.title}>{degree.title}</option>
+              <option value={degree.id}>{degree.title}</option>
             ))}
           </select>
         </div>

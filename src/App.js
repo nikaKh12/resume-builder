@@ -4,6 +4,7 @@ import PrivateInfo from "./pages/PrivateInfo";
 import Experience from "./pages/Experience";
 import Education from "./pages/Education";
 import { Routes, Route } from "react-router-dom";
+import FinalResume from "./pages/FinalResume";
 import "./App.css";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route path="/private-info" element={<PrivateInfo />}></Route>
         <Route path="/experience" element={<Experience />}></Route>
         <Route path="/education" element={<Education />}></Route>
+        <Route path="/final-resume" element={<FinalResume />}></Route>
       </Routes>
     </div>
   );

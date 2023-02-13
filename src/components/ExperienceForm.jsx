@@ -82,58 +82,6 @@ export default function ExperienceForm() {
     }
   };
 
-  // const handleClick = (event) => {
-  //   Object.values(experiences).map(function (key) {
-  //     if (key.position.isValid && key.position.touched) {
-  //       setBorder(positionRef, "1px solid #98e37e");
-  //     } else {
-  //       setBorder(positionRef, "1px solid #f02424");
-  //     }
-  //     if (key.employer.isValid && key.employer.touched) {
-  //       setBorder(employerRef, "1px solid #98e373");
-  //     } else {
-  //       setBorder(employerRef, "1px solid #f02424");
-  //     }
-  //     if (key.startDate.isValid) {
-  //       setBorder(durationStartRef, "1px solid #98e373");
-  //     } else {
-  //       setBorder(durationStartRef, "1px solid #f02424");
-  //     }
-  //     if (
-  //       key.endDate.isValid &&
-  //       key.endDate.touched &&
-  //       key.endDate.value !== ""
-  //     ) {
-  //       setBorder(durationEndRef, "1px solid #98e373");
-  //     } else {
-  //       setBorder(durationEndRef, "1px solid #f02424");
-  //     }
-  //     if (
-  //       key.description.isValid &&
-  //       key.description.touched &&
-  //       key.description.value !== ""
-  //     ) {
-  //       setBorder(descriptionRef, "1px solid #98e373");
-  //     } else {
-  //       setBorder(descriptionRef, "1px solid #f02424");
-  //     }
-  //     if (
-  //       key.position.isValid &&
-  //       key.position.touched &&
-  //       key.employer.isValid &&
-  //       key.employer.touched &&
-  //       key.startDate.isValid &&
-  //       key.startDate.touched &&
-  //       key.endDate.isValid &&
-  //       key.endDate.touched &&
-  //       key.description.isValid &&
-  //       key.description.touched
-  //     ) {
-  //       console.log("validated");
-  //     }
-  //   });
-  // };
-
   const handleClick = () => {
     Object.values(experiences).map((values) => {
       if (
