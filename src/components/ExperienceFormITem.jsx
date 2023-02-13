@@ -38,7 +38,6 @@ function ExperienceFormITem({
     )
       return "label-success";
   };
-  console.log("here");
   return (
     <div>
       <div className="position-container">
