@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../Context/Context";
 import { useLocation } from "react-router-dom";
 import Logo3 from "../images/logo-3.png";
@@ -8,7 +8,6 @@ export default function Resume() {
   const location = useLocation();
   const { experiences } = useContext(Context);
   const { educations } = useContext(Context);
-
   return (
     <div className="resume-container">
       <div className="name-container">
@@ -112,9 +111,31 @@ export default function Resume() {
         (key) =>
           educations[key] && (
             <div key={key}>
-              {`${educations[key].institute.value}${
-                educations[key].institute.value && ","
-              } ${educations[key].degree.value}`}
+              <p style={{ fontWeight: "bold" }}>
+                {`${educations[key].institute.value}${
+                  educations[key].institute.value && ","
+                } ${
+                  educations[key].degree.value == 1
+                    ? "საშუალო სკოლის დიპლომი"
+                    : educations[key].degree.value == 2
+                    ? "ზოგადსაგანმანათლებლო დიპლომი"
+                    : educations[key].degree.value == 3
+                    ? "ბაკალავრი"
+                    : educations[key].degree.value == 4
+                    ? "მაგისტრი"
+                    : educations[key].degree.value == 5
+                    ? "დოქტორი"
+                    : educations[key].degree.value == 6
+                    ? "ასოცირებული ხარისხი"
+                    : educations[key].degree.value == 7
+                    ? "სტუდენტი"
+                    : educations[key].degree.value == 8
+                    ? "კოლეჯი(ხარისხის გარეშე)"
+                    : educations[key].degree.value == 9
+                    ? "სხვა"
+                    : ""
+                }`}
+              </p>
               <p
                 style={{
                   fontStyle: "italic",

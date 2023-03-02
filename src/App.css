@@ -36,6 +36,11 @@ header {
   font-size: 20px;
   font-weight: 500;
   z-index: 1;
+  transition: 0.3s ease-in-out;
+}
+.add-resume:hover {
+  background-color: #f93b1d;
+  border: 1px solid black;
 }
 .logo-2 {
   z-index: 0;
@@ -156,6 +161,10 @@ textarea {
   line-height: 20px;
   letter-spacing: 0.08em;
   cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+.btn-container button:hover {
+  background-color: #f93b1d;
 }
 .top-label {
   font-weight: 700;
@@ -249,10 +258,16 @@ textarea {
   position: absolute;
   left: 0;
   margin-left: 0.5em;
+  text-align: center;
   color: black;
   background-color: white;
-  padding: 0.5em 0.7em;
+  padding: 0.7em 0.9em;
   border-radius: 100%;
+  transition: 0.3s ease-in-out;
+}
+.return:hover {
+  background-color: #f93b1d;
+  color: white;
 }
 
 /* Resume */
@@ -269,6 +284,7 @@ textarea {
 .resume-container p {
   font-size: 18px;
 }
+
 .resume-container i {
   font-size: 15px;
   color: gray;
@@ -318,7 +334,7 @@ textarea {
   top: 0;
 }
 .resume-container {
-  height: 94vh;
+  height: 86vh;
   overflow-y: scroll;
   position: relative;
 }
@@ -407,6 +423,10 @@ textarea {
   outline: none;
   cursor: pointer;
   border-radius: 4px;
+  transition: 0.3s ease-in-out;
+}
+.add:hover {
+  background-color: #f93b1d;
 }
 
 .duration-container {
@@ -553,8 +573,8 @@ select {
   padding: 10px 5px !important;
   border: 1px solid #bcbcbc !important;
   outline: none !important;
+  color: black !important;
 }
-
 .institute-container {
   position: relative;
 }
@@ -578,4 +598,86 @@ select {
 .due_date {
   outline: none;
   border: 1px solid #bcbcbc !important;
+}
+select option {
+  font-size: 18px;
+}
+
+/* Final Resume */
+.final-resume {
+  border: 0.8px solid #000000;
+  border-radius: 3px;
+  max-width: 40%;
+  width: 100%;
+  height: 95vh;
+  display: flex;
+  flex-direction: column;
+  padding: 3em 5em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow-y: scroll;
+}
+.logo-3-final {
+  width: 42px;
+  padding-top: 5em;
+}
+
+.final-resume h4 {
+  color: #f93b1d;
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 1em;
+}
+.final-resume p {
+  font-size: 16px;
+}
+.final-resume i {
+  color: gray;
+  font-size: 18px;
+  margin-bottom: 0.2em;
+}
+.final-resume::-webkit-scrollbar {
+  background-color: white;
+  width: 3px;
+}
+.final-resume::-webkit-scrollbar-thumb {
+  background: #8c8c8c;
+  border-radius: 10px;
+}
+
+.popup {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 40px 40px 30px;
+  gap: 10px;
+  position: absolute;
+  width: 427px;
+  height: 167px;
+  left: 1423px;
+  top: 53px;
+  background: #ffffff;
+  border: 1px solid #e4e4e4;
+  box-shadow: 0px 4px 28px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  transition: opacity 0.5s, visibility 0.5s;
+  opacity: 1;
+  visibility: visible;
+}
+.popup-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+.popup i {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 1em;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+.popup i:hover {
+  color: #f93b1d;
 }

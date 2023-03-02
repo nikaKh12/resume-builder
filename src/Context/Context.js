@@ -47,6 +47,8 @@ function ContextProvider({ children }) {
     [uuid()]: { ...EDUCATION },
   });
   const [degreeList, setDegreeList] = useState([]);
+  const [finalData, setFinalData] = useState({});
+
   useEffect(() => {
     const experiencesFromLocalStorage =
       getItemFromLocalStorage(EXPERIENCES_KEY);
@@ -392,6 +394,8 @@ function ContextProvider({ children }) {
         dataObj,
         setDataObj,
         getRequestData,
+        finalData,
+        setFinalData,
       }}
     >
       {children}

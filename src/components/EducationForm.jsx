@@ -26,6 +26,8 @@ export default function EducationForm() {
     validateEducationDescription,
     dataObj,
     getRequestData,
+    finalData,
+    setFinalData,
   } = useContext(Context);
   const handleAddEducation = () => {
     setEducations({ ...educations, ...{ [uuid()]: { ...EDUCATION } } });
@@ -64,17 +66,11 @@ export default function EducationForm() {
     }
   };
 
-  const [formData, setFormData] = useState({});
-  const post = () => {
-    // const formData = new FormData({
-    //   name: "lasha",
-    // });
-    // console.log(
-    //   dataObj.educations[0][Object.keys(dataObj.educations[0])].degree.value
-    // );
-    for (let i = 0; i < dataObj.educations; i++) {
-      console.log(dataObj.educations[i]);
-    }
+  const post = async () => {
+    // for (let i = 0; i < dataObj.educations; i++) {
+    //   console.log(dataObj.educations[i]);
+    // }
+
     const requestData = getRequestData();
     const data = {
       ...requestData,
@@ -91,89 +87,53 @@ export default function EducationForm() {
         const ed = education; //Object.values(education);
         return {
           description: ed.description?.value,
+          degree: ed.degree?.value,
           degree_id: ed.degree?.value,
           due_date: ed.due_date?.value,
           institute: ed.institute?.value,
         };
       }),
     };
-    console.log(data, "data");
 
-    // setFormData({
-    //   ...dataObj,
-    //   educations: [
-    //     {
-    //       institute:
-    //         dataObj.educations[0][Object.keys(dataObj.educations[0])].institute
-    //           .value,
-    //       degree:
-    //         dataObj.educations[0][Object.keys(dataObj.educations[0])].degree
-    //           .value,
-    //       due_date:
-    //         dataObj.educations[0][Object.keys(dataObj.educations[0])].due_date
-    //           .value,
-    //       description:
-    //         dataObj.educations[0][Object.keys(dataObj.educations[0])]
-    //           .description.value,
-    //     },
-    //   ],
-    //   experiences: [
-    //     {
-    //       position:
-    //         dataObj.experiences[0][Object.keys(dataObj.experiences[0])].position
-    //           .value,
-    //       employer:
-    //         dataObj.experiences[0][Object.keys(dataObj.experiences[0])].employer
-    //           .value,
-    //       start_date:
-    //         dataObj.experiences[0][Object.keys(dataObj.experiences[0])]
-    //           .startDate.value,
-    //       description:
-    //         dataObj.experiences[0][Object.keys(dataObj.experiences[0])]
-    //           .description.value,
-    //     },
-    //   ],
-    // });
-    // console.log("formData, dataObj");
-
-    // formData.set("educations", [
-    //   {
-    //     institute: dataObj.educations.institute,
-    //     degree: dataObj.educations.degree,
-    //     due_date: dataObj.educations.due_date,
-    //     description: dataObj.educations.description,
-    //   },
-    // ]);
-    // formData.set("experiences", [
-    //   {
-    //     position: dataObj.experiences.position,
-    //     employer: dataObj.experiences.employer,
-    //     start_date: dataObj.experiences.start_date,
-    //     description: dataObj.experiences.description,
-    //   },
-    // ]);
-    console.log(formData);
     const base64 = localStorage["image"];
     const base64Parts = base64.split(",");
     const fileFormat = base64Parts[0].split(";")[1];
     const fileContent = base64Parts[1];
-    const file = new File([fileContent], "image", { type: fileFormat });
+
+    const formData = new FormData();
+    const file = await fetch(localStorage.getItem("image")).then((res) =>
+      res.blob()
+    );
+    formData.append("image", file);
+
+    Object.entries(data).forEach(([key, value]) => {
+      if (key !== "image") {
+        if (Array.isArray(value)) {
+          value.forEach((item, index) => {
+            Object.entries(item).forEach(([itemKey, itemValue]) => {
+              formData.append(`${key}[${index}][${itemKey}]`, itemValue);
+            });
+          });
+        } else {
+          formData.append(key, value);
+        }
+      }
+    });
     axios
-      .post("https://resume.redberryinternship.ge/api/cvs", {
-        ...data,
-        image: file,
+      .post("https://resume.redberryinternship.ge/api/cvs", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       })
-      .then((res) => (res.ok ? console.log(formData) : console.log("false")));
-    // fetch("https://resume.redberryinternship.ge/api/cvs", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "multipart/form-data",
-    //   },
-    //   body: JSON.stringify(formData),
-    // }).then((res) => (res.ok ? console.log(formData) : console.log("false")));
-    console.log(formData);
+      .then((response) => {
+        setFinalData(response.data);
+        navigate("/final-resume");
+      })
+      .catch((error) => {
+        // Handle any errors
+        console.log(error);
+      });
   };
-  console.log(educations, "educations");
   return (
     <div className="education-info-form">
       <Link to="/">

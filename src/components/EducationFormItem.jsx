@@ -77,14 +77,24 @@ export default function EducationFormItem({ education, onChange }) {
           </label>
           <select
             name="degrees"
+            defaultValue="აირჩიეთ ხარისხი"
             id="degrees"
             onChange={(e) => onChange(e, "degree")}
             value={degree?.value}
             className={`degree ${getValidatedClasses(degree)}`}
           >
-            <option value="აირჩიეთ ხარისხი">აირჩიეთ ხარისხი</option>
+            <option value="" disabled>
+              აირჩიეთ ხარისხი
+            </option>
             {degreeList.map((degree) => (
-              <option value={degree.id}>{degree.title}</option>
+              <option
+                value={degree.id}
+                style={{
+                  color: "black",
+                }}
+              >
+                {degree.title}
+              </option>
             ))}
           </select>
         </div>
